@@ -99,7 +99,7 @@ My research develops data-driven and physically informed methods for understandi
 
 # CV
 
-<p><a class="btn btn--primary cv-download" href="/assets/pdf/Qianyi_Liu_CV.pdf"><i class="fas fa-file-download" aria-hidden="true"></i> Download CV</a></p>
+<p><a class="btn btn--primary cv-download" href="/assets/pdf/Qianyi_Liu_CV.pdf" download="Qianyi_Liu_CV.pdf"><i class="fas fa-file-download" aria-hidden="true"></i> Download CV</a></p>
 
 ## Education
 
