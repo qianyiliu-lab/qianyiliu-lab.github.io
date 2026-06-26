@@ -1,0 +1,228 @@
+---
+---
+
+/*
+ *    Minimal Mistakes Jekyll Theme
+ *
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
+ *
+*/
+
+@import "vendor/breakpoint/breakpoint"; // media query mixins
+@import "variables";
+@import "mixins";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
+@import "forms";
+
+@import "page";
+@import "archive";
+@import "sidebar";
+
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/solid";
+@import "vendor/font-awesome/brands";
+@import "vendor/magnific-popup/magnific-popup";
+@import "print";
+
+.paper-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px #efefef solid;
+    padding: 2em 0 2em 0;
+    
+
+    .paper-box-image{
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        order: 2;
+        img {
+            max-width: 400px;
+            box-shadow: 3px 3px 6px #888;
+            object-fit: cover;
+        }
+    }
+    
+    .paper-box-text{
+        max-width: 100%;
+        order: 1;
+    }
+    
+    @include breakpoint($medium) {
+        .paper-box-image{
+            justify-content: left;
+            min-width: 200px;
+            max-width: 40%;
+            order: 1;
+        }
+        
+        .paper-box-text{
+            justify-content: left;
+            padding-left: 2em;
+            max-width: 60%;
+            order: 2;
+        }
+
+    }
+
+
+}
+
+$scroll_offset : 2em;
+h1:before, .anchor:before { 
+    content: ''; 
+    display: block; 
+    position: relative; 
+    width: 0; 
+    height: $scroll_offset; 
+    margin-top: -$scroll_offset;
+}
+
+.badge {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: absolute;
+    margin-top: .5em;
+    margin-left: -.5em;
+    color: white;
+    background-color: #00369f;
+    font-size: .8em;
+}
+
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 1rem 0 1.25rem;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin: .75rem 0 1.25rem;
+
+    span {
+        border: 1px solid #d8e2df;
+        border-radius: 6px;
+        background: #f6faf8;
+        color: #284b3d;
+        display: inline-block;
+        font-size: .82em;
+        line-height: 1.2;
+        padding: .34rem .55rem;
+    }
+
+    &.compact {
+        margin: .55rem 0 .75rem;
+    }
+}
+
+.research-block,
+.project-card,
+.publication-entry {
+    border: 1px solid #e4e8ec;
+    border-radius: 6px;
+    margin: 1rem 0 1.25rem;
+    padding: 1rem;
+    background: #fff;
+}
+
+.research-block {
+    display: grid;
+    gap: 1rem;
+
+    @include breakpoint($medium) {
+        grid-template-columns: minmax(180px, 28%) 1fr;
+        align-items: start;
+    }
+}
+
+.placeholder-figure,
+.project-card__media {
+    align-items: center;
+    background: linear-gradient(135deg, #f4f7fb, #eef6f1);
+    border: 1px dashed #a7b9b0;
+    border-radius: 6px;
+    color: #425466;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    justify-content: center;
+    min-height: 140px;
+    padding: 1rem;
+    text-align: center;
+
+    code {
+        background: rgba(255, 255, 255, .75);
+        border-radius: 4px;
+        color: #235789;
+        display: block;
+        font-size: .76em;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        padding: .25rem .4rem;
+    }
+}
+
+.project-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.project-card {
+    display: grid;
+    gap: 1rem;
+
+    @include breakpoint($medium) {
+        grid-template-columns: minmax(200px, 32%) 1fr;
+    }
+}
+
+.project-card__body h2,
+.research-block h2 {
+    font-size: 1.15em;
+    margin-top: .15rem;
+}
+
+.status-tag {
+    background: #eef3fb;
+    border: 1px solid #c9d8ee;
+    border-radius: 6px;
+    color: #235789;
+    display: inline-block;
+    font-size: .78em;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: .35rem;
+    padding: .25rem .5rem;
+}
+
+.todo-note {
+    color: #755c1b;
+    font-size: .9em;
+    margin: .55rem 0 0;
+}
+
+.compact-entry {
+    padding: .8rem 1rem;
+}

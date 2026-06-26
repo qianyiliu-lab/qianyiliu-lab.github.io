@@ -1,0 +1,28 @@
+- title: "Explainable Machine Learning for Tropical Cyclone-Induced Flood Susceptibility"
+  status: "Published"
+  image_path: "images/projects/flood-susceptibility-map.jpg"
+  summary: "This project integrates hydrodynamic modeling, remote sensing-derived predictors, and ensemble machine learning to assess tropical cyclone-induced flood susceptibility. It uses interpretable machine learning methods to identify key flood-driving factors and produce spatially explicit susceptibility maps."
+  methods: "Hydrodynamic modeling, ensemble machine learning, SHAP, GAM, remote sensing, GIS, Python."
+  outputs: "Flood susceptibility map, SHAP summary plot, model workflow diagram."
+  links:
+    - label: "DOI"
+      url: "https://doi.org/10.1016/j.gsf.2026.102355"
+  todo: "TODO: Add PDF, code, data, and representative figure files when available."
+
+- title: "Spatially Robust Landslide Susceptibility Mapping"
+  status: "Ongoing / Under preparation"
+  image_path: "images/projects/landslide-susceptibility-map.jpg"
+  summary: "This project develops spatially robust landslide susceptibility models using landslide inventories, terrain and environmental conditioning factors, PU learning-based negative sampling, spatial cross-validation, and model interpretation methods."
+  methods: "Landslide inventory analysis, PU learning, CatBoost, spatial cross-validation, SHAP, causal analysis, GIS."
+  outputs: "Landslide susceptibility map, spatial cluster map, feature importance and interpretation plots."
+  links: []
+  todo: "TODO: Add paper, poster, code, and representative figure links when available."
+
+- title: "Self-Supervised Learning for Small-Sample Landslide Susceptibility Mapping"
+  status: "Ongoing / Under preparation"
+  image_path: "images/projects/ssl-lsm-workflow.jpg"
+  summary: "This project investigates whether self-supervised representation learning can improve small-sample landslide susceptibility mapping. It uses dual-view geospatial patches, ResNet-style CNNs, masked reconstruction, contrastive learning, and few-shot fine-tuning for spatial transfer evaluation."
+  methods: "PyTorch, ResNet-18, dual-view patches, masked reconstruction, contrastive learning, fine-tuning, few-shot learning."
+  outputs: "SSL workflow diagram, model architecture figure, cross-validation performance comparison."
+  links: []
+  todo: "TODO: Add paper, code, and representative figure links when available."

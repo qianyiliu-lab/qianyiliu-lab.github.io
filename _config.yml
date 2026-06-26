@@ -1,0 +1,156 @@
+# Site Settings
+title                    : "Qianyi Liu"
+description              : "Academic homepage of Qianyi Liu, PhD student in Civil Engineering at Stony Brook University."
+repository               : "qianyiliu/qianyiliu.github.io"
+url                      : "https://qianyiliu.github.io"
+baseurl                  : ""
+google_scholar_stats_use_cdn : true
+google_scholar_id        : "UmPI1h0AAAAJ"
+
+# Google Analytics
+google_analytics_id      :
+
+# SEO Related
+google_site_verification :
+bing_site_verification   :
+baidu_site_verification  :
+
+# Site Author
+author:
+  name             : "Qianyi Liu"
+  avatar           : "images/qianyi-liu-profile.jpg"
+  bio              : "PhD Student in Civil Engineering | Geospatial AI, Geohazards, Remote Sensing, and Machine Learning"
+  location         : "Stony Brook, NY, USA"
+  employer         : "Department of Civil Engineering, Stony Brook University"
+  pubmed           :
+  googlescholar    : "https://scholar.google.com/citations?user=UmPI1h0AAAAJ&hl=en&authuser=2"
+  email            : "qianyi.liu@stonybrook.edu"
+  researchgate     :
+  uri              : "https://qianyiliu.github.io"
+  cv               : "/assets/pdf/Qianyi_Liu_CV.pdf"
+  bitbucket        :
+  codepen          :
+  dribbble         :
+  flickr           :
+  facebook         :
+  foursquare       :
+  github           : "qianyiliu"
+  google_plus      :
+  keybase          :
+  instagram        :
+  impactstory      :
+  lastfm           :
+  linkedin         : "qianyi-liu-544783414"
+  dblp             :
+  orcid            : "https://orcid.org/0009-0006-0161-4639"
+  pinterest        :
+  soundcloud       :
+  stackoverflow    :
+  steam            :
+  tumblr           :
+  twitter          :
+  vine             :
+  weibo            :
+  xing             :
+  youtube          :
+  wikipedia        :
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+  - files
+exclude:
+  - docs
+  - google_scholar_crawler
+  - AGENTS.md
+  - Qianyi_Liu.jpg
+  - Qianyi_Liu_CV.pdf
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .github
+  - CHANGELOG
+  - Capfile
+  - Gemfile
+  - Gruntfile.js
+  - LICENSE
+  - README
+  - Rakefile
+  - assets/js/_main.js
+  - assets/js/plugins
+  - assets/js/vendor
+  - config
+  - gulpfile.js
+  - log
+  - node_modules
+  - package.json
+  - tmp
+  - vendor
+  - .acad_template_unzip
+  - acad_template.zip
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+      author_profile: true
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Outputting
+permalink: /:categories/:title/
+timezone: America/New_York
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+# HTML Compression
+compress_html:
+  clippings: all
+  ignore:
+    envs: development

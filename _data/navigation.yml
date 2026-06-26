@@ -1,0 +1,25 @@
+# Main navigation links
+main:
+  - title: "Home"
+    url: "/#about-me"
+
+  - title: "Research"
+    url: "/#research"
+
+  - title: "Publications"
+    url: "/#publications"
+
+  - title: "Projects"
+    url: "/#projects"
+
+  - title: "Awards & News"
+    url: "/#awards-news"
+
+  - title: "Teaching"
+    url: "/#teaching"
+
+  - title: "CV"
+    url: "/#cv"
+
+  - title: "Contact"
+    url: "/#contact"
