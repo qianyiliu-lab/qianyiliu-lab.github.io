@@ -1,8 +1,8 @@
 # Site Settings
 title                    : "Qianyi Liu"
 description              : "Academic homepage of Qianyi Liu, PhD student in Civil Engineering at Stony Brook University."
-repository               : "qianyiliu/qianyiliu.github.io"
-url                      : "https://qianyiliu.github.io"
+repository               : "qianyiliu-lab/qianyiliu-lab.github.io"
+url                      : "https://qianyiliu-lab.github.io"
 baseurl                  : ""
 google_scholar_stats_use_cdn : true
 google_scholar_id        : "UmPI1h0AAAAJ"
@@ -26,7 +26,7 @@ author:
   googlescholar    : "https://scholar.google.com/citations?user=UmPI1h0AAAAJ&hl=en&authuser=2"
   email            : "qianyi.liu@stonybrook.edu"
   researchgate     :
-  uri              : "https://qianyiliu.github.io"
+  uri              : "https://qianyiliu-lab.github.io"
   cv               : "/assets/pdf/Qianyi_Liu_CV.pdf"
   bitbucket        :
   codepen          :

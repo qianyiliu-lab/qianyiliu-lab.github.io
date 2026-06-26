@@ -2,7 +2,7 @@
 
 This repository contains the Jekyll/GitHub Pages source for Qianyi Liu's academic homepage:
 
-https://qianyiliu.github.io
+https://qianyiliu-lab.github.io
 
 The site is based on the AcadHomepage template and remains a static Jekyll site for long-term maintenance through Markdown, YAML, HTML, Liquid, and SCSS.
 
@@ -37,10 +37,10 @@ Open http://127.0.0.1:4000 after the server starts.
 
 ## GitHub Pages Deployment
 
-1. Create or rename the GitHub repository to `qianyiliu.github.io`.
-2. Push this repository to `https://github.com/qianyiliu/qianyiliu.github.io`.
+1. Create or rename the GitHub repository to `qianyiliu-lab.github.io`.
+2. Push this repository to `https://github.com/qianyiliu-lab/qianyiliu-lab.github.io`.
 3. In GitHub repository settings, enable GitHub Pages from the default branch.
-4. The expected public URL is `https://qianyiliu.github.io`.
+4. The expected public URL is `https://qianyiliu-lab.github.io`.
 
 ## Google Scholar Citation Automation
 
