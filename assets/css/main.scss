@@ -226,3 +226,232 @@ h1:before, .anchor:before {
 .compact-entry {
     padding: .8rem 1rem;
 }
+
+/* Academic homepage refinements inspired by a compact two-column CV layout. */
+#main {
+    margin-top: 1.75rem;
+}
+
+.page__content {
+    line-height: 1.62;
+
+    h1 {
+        border-bottom-color: #e8ebed;
+        font-size: 1.45rem;
+        margin: 2.65rem 0 1rem;
+        padding-bottom: .55rem;
+    }
+
+    h2 {
+        font-size: 1.12rem;
+        margin: 1.4rem 0 .55rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin: .4rem 0 .45rem;
+    }
+
+    li {
+        margin-bottom: .42rem;
+    }
+}
+
+.homepage-intro {
+    font-size: 1.02rem;
+    margin: .15rem 0 2.2rem;
+
+    p {
+        margin-bottom: .75rem;
+    }
+}
+
+.research-list,
+.project-list {
+    margin-top: 1rem;
+}
+
+.research-theme {
+    margin: 0 0 1.45rem;
+
+    h3 {
+        font-style: italic;
+        font-weight: 700;
+    }
+
+    p {
+        margin-bottom: .45rem;
+    }
+}
+
+.research-keywords {
+    color: #68727a;
+    font-size: .9rem;
+}
+
+.publication-entry {
+    background: transparent;
+    border: 0;
+    border-left: 3px solid #aebbc5;
+    border-radius: 0;
+    margin: .8rem 0 1.5rem;
+    padding: .15rem 0 .15rem 1rem;
+
+    h3 {
+        font-style: normal;
+        line-height: 1.45;
+    }
+
+    p {
+        margin-bottom: .35rem;
+    }
+}
+
+.project-entry {
+    border-top: 1px solid #e8ebed;
+    margin: 0;
+    padding: 1.25rem 0 1.1rem;
+
+    &:first-child {
+        border-top: 0;
+        padding-top: .2rem;
+    }
+
+    h2 {
+        margin-top: .15rem;
+    }
+
+    p {
+        margin-bottom: .55rem;
+    }
+}
+
+.project-status {
+    color: #66737c;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin: 0 0 .1rem !important;
+    text-transform: uppercase;
+}
+
+.resource-links {
+    font-size: .92rem;
+}
+
+.cv-download i {
+    margin-right: .35rem;
+}
+
+@include breakpoint($large) {
+    .sidebar {
+        padding-right: 1.2rem;
+    }
+
+    .author__avatar img {
+        border: 0;
+        height: 165px;
+        max-width: 165px;
+        object-fit: cover;
+        padding: 0;
+        width: 165px;
+    }
+
+    .sidebar .author__name {
+        font-size: 1.35rem;
+        margin: 1rem 0 .45rem;
+    }
+
+    .author__bio {
+        font-size: .96rem;
+        line-height: 1.5;
+        margin: 0 0 .2rem;
+    }
+
+    .author__employer {
+        color: #59636a;
+        font-size: .92rem;
+        line-height: 1.45;
+        margin: 0 0 .9rem;
+    }
+
+    .author__urls a,
+    .author__urls li {
+        font-size: .92rem;
+        line-height: 1.45;
+    }
+
+    .author__urls li {
+        margin-bottom: .32rem;
+        white-space: normal;
+    }
+}
+
+@include breakpoint(max-width $large) {
+    #main {
+        margin-top: 1.25rem;
+    }
+
+    .profile_box {
+        align-items: center;
+        display: grid;
+        gap: .8rem;
+        grid-template-columns: 72px minmax(0, 1fr) auto;
+    }
+
+    .author__avatar {
+        display: block;
+        width: 72px;
+
+        img {
+            height: 72px;
+            min-width: 72px;
+            object-fit: cover;
+            width: 72px;
+        }
+    }
+
+    .author__content {
+        display: block;
+        min-width: 0;
+        padding: 0;
+    }
+
+    .author__bio,
+    .author__employer {
+        margin: 0;
+    }
+
+    .author__urls-wrapper {
+        display: block;
+        margin-left: 0;
+    }
+
+    .author__urls_sm {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 1.35rem;
+        gap: .35rem;
+        justify-content: flex-end;
+        padding: 0;
+    }
+}
+
+@include breakpoint(max-width $small) {
+    .profile_box {
+        grid-template-columns: 72px minmax(0, 1fr);
+    }
+
+    .author__urls-wrapper {
+        grid-column: 2;
+    }
+
+    .author__urls_sm {
+        justify-content: flex-start;
+    }
+
+    .page__content h1 {
+        font-size: 1.35rem;
+        margin-top: 2.2rem;
+    }
+}
