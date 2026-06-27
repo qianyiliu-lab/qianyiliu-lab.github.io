@@ -266,6 +266,21 @@ h1:before, .anchor:before {
     }
 }
 
+.section-heading-icon {
+    font-size: .84em;
+    margin-right: .3rem;
+    text-align: center;
+    vertical-align: .04em;
+
+    &--news { color: #a95e45; }
+    &--research { color: #3f7487; }
+    &--publications { color: #64719a; }
+    &--projects { color: #687b57; }
+    &--teaching { color: #8a704c; }
+    &--cv { color: #755f7b; }
+    &--contact { color: #4f7880; }
+}
+
 .research-list,
 .project-list {
     margin-top: 1rem;

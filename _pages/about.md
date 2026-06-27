@@ -18,7 +18,7 @@ I am a PhD student in Civil Engineering at Stony Brook University. My research f
 
 <span class="anchor" id="awards-news"></span>
 
-# News & Awards
+# <i class="fas fa-fw fa-award section-heading-icon section-heading-icon--news" aria-hidden="true"></i> News & Awards
 
 {% for item in site.data.news %}
 {% unless item.date == "TODO" %}
@@ -28,7 +28,7 @@ I am a PhD student in Civil Engineering at Stony Brook University. My research f
 
 <span class="anchor" id="research"></span>
 
-# Research
+# <i class="fas fa-fw fa-microscope section-heading-icon section-heading-icon--research" aria-hidden="true"></i> Research
 
 My research develops data-driven and physically informed methods for understanding and mapping natural hazards. Current directions include:
 
@@ -46,7 +46,7 @@ My research develops data-driven and physically informed methods for understandi
 
 <span class="anchor" id="publications"></span>
 
-# Publications
+# <i class="fas fa-fw fa-book-open section-heading-icon section-heading-icon--publications" aria-hidden="true"></i> Publications
 
 ## Selected Publication
 
@@ -63,7 +63,7 @@ My research develops data-driven and physically informed methods for understandi
 
 <span class="anchor" id="projects"></span>
 
-# Projects
+# <i class="fas fa-fw fa-layer-group section-heading-icon section-heading-icon--projects" aria-hidden="true"></i> Projects
 
 <div class="project-list">
 {% for project in site.data.projects %}
@@ -89,7 +89,7 @@ My research develops data-driven and physically informed methods for understandi
 
 <span class="anchor" id="teaching"></span>
 
-# Teaching
+# <i class="fas fa-fw fa-chalkboard-teacher section-heading-icon section-heading-icon--teaching" aria-hidden="true"></i> Teaching
 
 {% for item in site.data.teaching %}
 - **{{ item.role }}, {{ item.course }}**, {{ item.institution }}{% unless item.semester contains "TODO" %}, {{ item.semester }}{% endunless %}.{% unless item.description contains "TODO" %} {{ item.description }}{% endunless %}
@@ -97,7 +97,7 @@ My research develops data-driven and physically informed methods for understandi
 
 <span class="anchor" id="cv"></span>
 
-# CV
+# <i class="fas fa-fw fa-file-alt section-heading-icon section-heading-icon--cv" aria-hidden="true"></i> CV
 
 <p><a class="btn btn--primary cv-download" href="/assets/pdf/Qianyi_Liu_CV.pdf" download="Qianyi_Liu_CV.pdf"><i class="fas fa-file-download" aria-hidden="true"></i> Download CV</a></p>
 
@@ -122,7 +122,7 @@ My research develops data-driven and physically informed methods for understandi
 
 <span class="anchor" id="contact"></span>
 
-# Contact
+# <i class="fas fa-fw fa-envelope section-heading-icon section-heading-icon--contact" aria-hidden="true"></i> Contact
 
 - **Email:** [qianyi.liu@stonybrook.edu](mailto:qianyi.liu@stonybrook.edu)
 - **Affiliation:** Department of Civil Engineering, Stony Brook University
