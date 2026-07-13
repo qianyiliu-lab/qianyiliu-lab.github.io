@@ -7,7 +7,7 @@ from pathlib import Path
 from scholarly import scholarly
 
 
-def fetch_author(scholar_id: str, attempts: int = 3) -> dict:
+def fetch_author(scholar_id: str, attempts: int = 2) -> dict:
     for attempt in range(1, attempts + 1):
         try:
             author = scholarly.search_author_id(scholar_id)
@@ -18,7 +18,7 @@ def fetch_author(scholar_id: str, attempts: int = 3) -> dict:
         except Exception:
             if attempt == attempts:
                 raise
-            time.sleep(10 * attempt)
+            time.sleep(5 * attempt)
 
 
 def write_json(path: Path, data: dict) -> None:
@@ -30,6 +30,7 @@ scholar_id = os.environ.get("GOOGLE_SCHOLAR_ID", "").strip()
 if not scholar_id:
     raise RuntimeError("GOOGLE_SCHOLAR_ID is required")
 
+scholarly.set_timeout(20)
 author = fetch_author(scholar_id)
 author["updated"] = datetime.now(timezone.utc).isoformat()
 author["publications"] = {
