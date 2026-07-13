@@ -44,11 +44,7 @@ Open http://127.0.0.1:4000 after the server starts.
 
 ## Google Scholar Citation Automation
 
-The original AcadHomepage crawler workflow is retained. To enable it, add this repository secret:
-
-- `GOOGLE_SCHOLAR_ID`: `UmPI1h0AAAAJ`
-
-No private tokens or credentials are stored in this repository.
+The citation workflow runs daily at 08:00 UTC and can also be started manually from GitHub Actions. It publishes citation data to the `google-scholar-stats` branch using the repository's built-in `GITHUB_TOKEN`. The public Google Scholar ID is configured in the workflow; no private credentials are stored in the repository.
 
 ## Remaining Content TODOs
 

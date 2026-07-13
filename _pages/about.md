@@ -48,7 +48,7 @@ My research develops data-driven and physically informed methods for understandi
 
 # <i class="fas fa-fw fa-book-open section-heading-icon section-heading-icon--publications" aria-hidden="true"></i> Publications
 
-## Selected Publication
+## Selected Publications
 
 {% assign selected_pubs = site.data.publications | where: "selected", true %}
 {% for pub in selected_pubs %}
@@ -57,7 +57,7 @@ My research develops data-driven and physically informed methods for understandi
 
 {{ pub.authors | markdownify }}
 
-*{{ pub.venue }}*, {{ pub.year }}.{% if pub.doi %} [DOI](https://doi.org/{{ pub.doi }}){% endif %}{% if pub.pdf %} | [PDF]({{ pub.pdf }}){% endif %}{% if pub.code %} | [Code]({{ pub.code }}){% endif %}{% if pub.data %} | [Data]({{ pub.data }}){% endif %}{% if pub.bibtex %} | [BibTeX]({{ pub.bibtex }}){% endif %}
+*{{ pub.venue }}*, {{ pub.year }}.{% if pub.doi %} [DOI](https://doi.org/{{ pub.doi }}){% endif %}{% if pub.pdf %} | [PDF]({{ pub.pdf }}){% endif %}{% if pub.code %} | [Code]({{ pub.code }}){% endif %}{% if pub.data %} | [Data]({{ pub.data }}){% endif %}{% if pub.bibtex %} | [BibTeX]({{ pub.bibtex }}){% endif %}{% if pub.scholar_id %} <span class="show_paper_citations" data-scholar-id="{{ pub.scholar_id }}">| Citations: loading...</span>{% endif %}
 </article>
 {% endfor %}
 

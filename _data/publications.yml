@@ -4,9 +4,23 @@
   venue: "Geoscience Frontiers"
   year: 2026
   doi: "10.1016/j.gsf.2026.102355"
+  scholar_id: "UmPI1h0AAAAJ:9yKSN-GCB0IC"
   pdf:
   code:
   data:
   bibtex:
   notes:
     - "TODO: Confirm full coauthor order and add links to PDF, code, data, and BibTeX when available."
+
+- selected: true
+  title: "A prediction method of fire frequency: Based on the optimization of SARIMA model"
+  authors: "Shuqi Ma, **Qianyi Liu**, and Yudong Zhang"
+  venue: "PLOS ONE"
+  year: 2021
+  doi: "10.1371/journal.pone.0255857"
+  scholar_id: "UmPI1h0AAAAJ:u5HHmVD_uO8C"
+  pdf:
+  code:
+  data:
+  bibtex:
+  notes: []
