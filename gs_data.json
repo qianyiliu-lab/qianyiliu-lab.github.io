@@ -1,0 +1,85 @@
+{
+  "container_type": "Author",
+  "filled": [
+    "basics",
+    "publications",
+    "indices",
+    "counts"
+  ],
+  "scholar_id": "UmPI1h0AAAAJ",
+  "source": "AUTHOR_PROFILE_PAGE",
+  "name": "Qianyi LIU",
+  "url_picture": "https://scholar.googleusercontent.com/citations?view_op=view_photo&user=UmPI1h0AAAAJ&citpid=4",
+  "affiliation": "Stony Brook University, Department of Civil Engineering",
+  "organization": 6543801266527645443,
+  "interests": [
+    "Geohazards",
+    "Landslide susceptibility",
+    "Flood risk"
+  ],
+  "email_domain": "@stonybrook.edu",
+  "citedby": 48,
+  "publications": {
+    "UmPI1h0AAAAJ:u5HHmVD_uO8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "A prediction method of fire frequency: Based on the optimization of SARIMA model",
+        "pub_year": "2021",
+        "citation": "PLoS one 16 (8), e0255857, 2021"
+      },
+      "filled": false,
+      "author_pub_id": "UmPI1h0AAAAJ:u5HHmVD_uO8C",
+      "num_citations": 46,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16952366162884932411",
+      "cites_id": [
+        "16952366162884932411"
+      ]
+    },
+    "UmPI1h0AAAAJ:9yKSN-GCB0IC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Integrating explainable ensemble machine learning with hydrodynamic modeling to assess tropical cyclone-induced flood susceptibility",
+        "pub_year": "2026",
+        "citation": "Geoscience Frontiers, 102355, 2026"
+      },
+      "filled": false,
+      "author_pub_id": "UmPI1h0AAAAJ:9yKSN-GCB0IC",
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13688527562759641876",
+      "cites_id": [
+        "13688527562759641876"
+      ]
+    },
+    "UmPI1h0AAAAJ:d1gkVwhDpl0C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Understanding Geo-Environmental Factors for Landslide Occurrences Using Geographically Explainable AI: A Case Study from the Northeastern United States",
+        "pub_year": "2025",
+        "citation": "AGU Fall Meeting Abstracts 2025, NH33F-0502, 2025"
+      },
+      "filled": false,
+      "author_pub_id": "UmPI1h0AAAAJ:d1gkVwhDpl0C",
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7339200878547889816",
+      "cites_id": [
+        "7339200878547889816"
+      ]
+    }
+  },
+  "citedby5y": 48,
+  "hindex": 1,
+  "hindex5y": 1,
+  "i10index": 1,
+  "i10index5y": 1,
+  "cites_per_year": {
+    "2022": 8,
+    "2023": 13,
+    "2024": 14,
+    "2025": 9,
+    "2026": 4
+  },
+  "updated": "2026-09-05T11:42:42.098422+00:00"
+}
