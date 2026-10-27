@@ -1,6 +1,6 @@
 - selected: true
   title: "Integrating Explainable Ensemble Machine Learning with Hydrodynamic Modeling to Assess Tropical Cyclone-Induced Flood Susceptibility"
-  authors: "**Qianyi Liu** et al."
+  authors: "**Qianyi Liu**, Liang Gao, Haoxuan Du, Te Pei, Sin-Chi Kuok, and Si Chen"
   venue: "Geoscience Frontiers"
   year: 2026
   doi: "10.1016/j.gsf.2026.102355"
@@ -10,7 +10,7 @@
   data:
   bibtex:
   notes:
-    - "TODO: Confirm full coauthor order and add links to PDF, code, data, and BibTeX when available."
+    - "TODO: Add links to PDF, code, data, and BibTeX when available."
 
 - selected: true
   title: "A prediction method of fire frequency: Based on the optimization of SARIMA model"
@@ -19,6 +19,34 @@
   year: 2021
   doi: "10.1371/journal.pone.0255857"
   scholar_id: "UmPI1h0AAAAJ:u5HHmVD_uO8C"
+  pdf:
+  code:
+  data:
+  bibtex:
+  notes: []
+
+- selected: false
+  status: "Under Review"
+  title: "Spatially Robust Explainable Machine Learning for Landslide Susceptibility Mapping: Interpreting Spatially Heterogeneous Controls"
+  authors: "**Qianyi Liu**, Xiaolu Liu, Hongzhi Cui, Yingli Tian, Naresh Devineni, and Te Pei"
+  venue: "Bulletin of Engineering Geology and the Environment"
+  year: 2026
+  doi:
+  scholar_id:
+  pdf:
+  code:
+  data:
+  bibtex:
+  notes: []
+
+- selected: false
+  status: "Under Review"
+  title: "Tropical Cyclone-Induced Compound Flooding Reveals Critical Flood Zone Transitions in the Pearl River Delta"
+  authors: "Haoxuan Du, Ke Fei, **Qianyi Liu**, and Li Zhang"
+  venue: "Ocean Engineering"
+  year: 2026
+  doi:
+  scholar_id:
   pdf:
   code:
   data:

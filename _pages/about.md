@@ -22,7 +22,7 @@ I am a PhD student in Civil Engineering at Stony Brook University. My research f
 
 {% for item in site.data.news %}
 {% unless item.date == "TODO" %}
-- *{{ item.date }}* {{ item.text }}
+- *{{ item.date }}* {% if item.url %}[{{ item.text }}]({{ item.url }}){% else %}{{ item.text }}{% endif %}
 {% endunless %}
 {% endfor %}
 
@@ -58,6 +58,19 @@ My research develops data-driven and physically informed methods for understandi
 {{ pub.authors | markdownify }}
 
 *{{ pub.venue }}*, {{ pub.year }}.{% if pub.doi %} [DOI](https://doi.org/{{ pub.doi }}){% endif %}{% if pub.pdf %} | [PDF]({{ pub.pdf }}){% endif %}{% if pub.code %} | [Code]({{ pub.code }}){% endif %}{% if pub.data %} | [Data]({{ pub.data }}){% endif %}{% if pub.bibtex %} | [BibTeX]({{ pub.bibtex }}){% endif %}{% if pub.scholar_id %} <span class="show_paper_citations" data-scholar-id="{{ pub.scholar_id }}">| Citations: loading...</span>{% endif %}
+</article>
+{% endfor %}
+
+## Manuscripts Under Review
+
+{% assign under_review_pubs = site.data.publications | where: "status", "Under Review" %}
+{% for pub in under_review_pubs %}
+<article class="publication-entry" markdown="1">
+### {{ pub.title }}
+
+{{ pub.authors | markdownify }}
+
+Submitted to *{{ pub.venue }}*, {{ pub.year }}. **Status: {{ pub.status }}.**
 </article>
 {% endfor %}
 

@@ -66,6 +66,7 @@ exclude:
   - AGENTS.md
   - Qianyi_Liu.jpg
   - Qianyi_Liu_CV.pdf
+  - Qianyi_Liu_Resume_Updated.tex
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache

@@ -1,0 +1,170 @@
+\documentclass[10pt,letterpaper]{article}
+
+% ---------- Page setup ----------
+% Prism-compatible version: compile with pdfLaTeX.
+% Uses Helvetica/Arial-like sans-serif throughout because many cloud LaTeX engines
+% do not expose the Microsoft Arial system font.
+\usepackage[margin=0.52in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{ragged2e}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6pt}
+\setlist[itemize]{leftmargin=1.05em, itemsep=0.7pt, topsep=0.7pt, parsep=0pt}
+\urlstyle{same}
+\sloppy
+
+% ---------- Section style ----------
+\definecolor{sectiongray}{gray}{0.18}
+\titleformat{\section}
+  {\normalsize\bfseries\color{sectiongray}}
+  {}{0pt}{}
+  [\vspace{1.8pt}{\color{sectiongray}\titlerule[0.5pt]}]
+\titlespacing*{\section}{0pt}{7pt}{5pt}
+
+% ---------- Custom commands ----------
+\newcommand{\cvsubheading}[4]{%
+  \begin{tabularx}{\textwidth}{@{}X r@{}}
+    \textbf{#1} & #3 \\
+    \textit{#2} & \textit{#4} \\
+  \end{tabularx}\vspace{-3pt}
+}
+\newcommand{\publication}[1]{\item \justifying #1}
+
+\begin{document}
+\fontsize{9.25}{10.25}\selectfont
+
+% ---------- Header ----------
+\begin{center}
+    {\Large \textbf{Qianyi Liu}} \\
+    \vspace{1pt}
+    Ph.D. Student, Department of Civil Engineering, Stony Brook University \\
+    \vspace{1pt}
+    \href{mailto:qianyi.liu@stonybrook.edu}{qianyi.liu@stonybrook.edu} \; | \; Stony Brook, NY, USA \; | \; ASCE Student Member \; | \; AGU Student Member
+\end{center}
+\vspace{-6pt}
+
+\section*{EDUCATION}
+\cvsubheading{Stony Brook University}{Ph.D. in Civil Engineering; GPA: 4.00/4.00}{08/2025--Present}{Stony Brook, NY, USA}
+\begin{itemize}
+    \item Research focus: geotechnical/geohazard engineering, landslide susceptibility mapping, GIS, spatial machine learning, causal and explainable AI. Advisor: Prof. Te Pei.
+\end{itemize}
+
+\cvsubheading{University of Macau}{M.S. in Coastal Environment and Safety; GPA: 3.25/4.00}{08/2023--06/2025}{Macau, China}
+\begin{itemize}
+    \item Relevant modules: Hydrodynamics and Floods (A); Advanced Computational Methods: Principles and Applications (A-).
+\end{itemize}
+
+\cvsubheading{Capital University of Economics and Business}{B.Eng. in Safety Engineering; GPA: 3.81/5.00 (88.2/100)}{09/2019--06/2023}{Beijing, China}
+\begin{itemize}
+    \item Relevant modules: Electrical Safety Engineering (100), Systems Engineering (100), Engineering Drawing II (99), Python Data Analysis (93).
+\end{itemize}
+
+\section*{RESEARCH INTERESTS}
+Geotechnical engineering; landslide susceptibility mapping; geohazard assessment; trustworthy AI; causal and explainable machine learning; spatially aware machine learning; GIS and remote sensing; hydrodynamic and compound-flood modeling; spatial cross-validation; SHAP analysis; infrastructure resilience.
+
+\section*{RESEARCH EXPERIENCE}
+\cvsubheading{Landslide Susceptibility Mapping and Geohazard Assessment}{Ph.D. Researcher, Stony Brook University}{08/2025--Present}{Stony Brook, NY, USA}
+\begin{itemize}
+    \item Developing geospatial machine-learning workflows for landslide susceptibility and slope-related geohazard assessment, emphasizing physically meaningful, spatially robust, and interpretable outputs.
+    \item Integrating terrain, hydrological, soil-related, vegetation, and rainfall-related factors to analyze spatially varying slope-instability mechanisms.
+    \item Applying spatial cross-validation, explainable AI, causal-graph analysis, and GIS-based mapping to improve model reliability and engineering interpretability.
+\end{itemize}
+
+\cvsubheading{Flood Susceptibility Mapping with Explainable Ensemble Machine Learning}{Research Assistant, University of Macau}{08/2023--08/2024}{Macau, China}
+\begin{itemize}
+    \item Conducted research on flood susceptibility mapping using GIS, multi-source environmental data, hydrodynamic modeling, and explainable ensemble machine-learning methods.
+    \item Developed flood susceptibility maps for the Greater Bay Area / Pearl River Delta case study and analyzed feature contributions using SHAP-based interpretation.
+\end{itemize}
+
+\cvsubheading{Smart Emergency Response Development Strategy (2035)}{National Key Project; Team Member; Lead: Academician Weicheng Fan}{09/2020--10/2020}{China}
+\begin{itemize}
+    \item Synthesized national macro policies related to smart emergency management and contributed to drafting the policy environment and national demand section for smart emergency development.
+\end{itemize}
+
+\section*{PUBLICATIONS AND MANUSCRIPTS}
+\textbf{Peer-Reviewed Journal Articles}
+\begin{itemize}
+    \publication{\textbf{Liu, Q.}, Gao, L., Du, H., Pei, T., Kuok, S.-C., \& Chen, S. (2026). Integrating explainable ensemble machine learning with hydrodynamic modeling to assess tropical cyclone-induced flood susceptibility. \textit{Geoscience Frontiers}, 17(5), Article 102355. \href{https://doi.org/10.1016/j.gsf.2026.102355}{https://doi.org/10.1016/j.gsf.2026.102355}.}
+    \publication{Ma, S., \textbf{Liu, Q.}, \& Zhang, Y. (2021). A prediction method of fire frequency: Based on the optimization of the SARIMA model. \textit{PLOS ONE}, 16(8), Article e0255857. \href{https://doi.org/10.1371/journal.pone.0255857}{https://doi.org/10.1371/journal.pone.0255857}.}
+\end{itemize}
+\textbf{Manuscripts Under Review}
+\begin{itemize}
+    \publication{\textbf{Liu, Q.}, Liu, X., Cui, H., Tian, Y., Devineni, N., \& Pei, T. (2026). \textit{Spatially Robust Explainable Machine Learning for Landslide Susceptibility Mapping: Interpreting Spatially Heterogeneous Controls}. Submitted to \textit{Bulletin of Engineering Geology and the Environment}. Status: Under Review.}
+    \publication{Du, H., Fei, K., \textbf{Liu, Q.}, \& Zhang, L. (2026). \textit{Tropical Cyclone-Induced Compound Flooding Reveals Critical Flood Zone Transitions in the Pearl River Delta}. Submitted to \textit{Ocean Engineering}. Status: Under Review.}
+\end{itemize}
+
+\section*{CONFERENCE ABSTRACTS AND PRESENTATIONS}
+\begin{itemize}
+    \publication{\textbf{Liu, Q.}, Liu, X., Pei, T., Devineni, N., \& Tian, Y. (2025). Understanding Geo-Environmental Factors for Landslide Occurrences Using Geographically Explainable AI: A Case Study from the Northeastern United States. \textit{AGU Fall Meeting Abstracts}, 2025, NH33F-0502.}
+    \publication{\textbf{Liu, Q.}, Liu, X., \& Pei, T. (2026). Uncovering Spatial Heterogeneity in Landslide Controls through a Causality-Aware and Explainable Machine Learning Framework. 2026 NSF NHERI GSC Mini-Conference.}
+    \publication{\textbf{Liu, Q.}, Liu, X., \& Pei, T. (2026). Trustworthy AI for Geohazard Mitigation: A Causal and Explainable Framework for Landslide Susceptibility Mapping. SUNY AI Symposium.}
+    \publication{\textbf{Liu, Q.}, Liu, X., Pei, T., Devineni, N., \& Tian, Y. (2027). Physics-Guided and Spatially Aware Machine Learning for Trustworthy Landslide Susceptibility Mapping in Heterogeneous Terrain. ASCE 2027 Abstract.}
+    \publication{\textbf{Liu, Q.}, Liu, X., Pei, T., Cui, H., Devineni, N., \& Tian, Y. (2027). Causality-Constrained Explainable Machine Learning for Identifying Spatially Varying Controls in Landslide Susceptibility Mapping. ASCE 2027 Abstract.}
+\end{itemize}
+
+\newpage
+\section*{TEACHING EXPERIENCE}
+\cvsubheading{Department of Civil Engineering, Stony Brook University}{Teaching Assistant}{08/2025--Present}{Stony Brook, NY, USA}
+\begin{itemize}
+    \item Support course instruction, grading, laboratory/problem-solving sessions, and student guidance for undergraduate civil engineering courses.
+    \item Help students connect experimental or computational results with civil engineering concepts and reporting standards.
+\end{itemize}
+
+\section*{ACADEMIC SERVICE}
+\cvsubheading{2026 NSF NHERI GSC Mini-Conference}{Reviewer, NSF NHERI Graduate Student Council}{04/2026}{}
+\begin{itemize}
+    \item Reviewed student conference submissions and contributed to the academic review process for the 2026 NHERI GSC Mini-Conference.
+\end{itemize}
+
+\section*{ADDITIONAL PROFESSIONAL EXPERIENCE}
+\cvsubheading{China Aerospace Construction Group Co., Ltd.}{Intern}{06/2022--07/2022; 09/2022--10/2022}{Beijing, China}
+\begin{itemize}
+    \item Compiled safety inspection records for the Pinggu Men Station natural gas project, organized ledgers, and developed educational safety materials and emergency response plans.
+    \item Supported implementation of corporate safety protocols and enhanced execution methods for safety management under pandemic-related constraints.
+\end{itemize}
+
+\cvsubheading{Beijing GuoXinAn Technology Co., Ltd.}{Intern}{07/2021--08/2021}{Beijing, China}
+\begin{itemize}
+    \item Assisted SMEs with risk-source declaration in Changping District through direct offline engagement and online reporting support.
+    \item Supported community-level enterprise safety and regional risk management practices.
+\end{itemize}
+
+\section*{AWARDS AND HONORS}
+\begin{itemize}
+    \item First Place, Individual Poster Presentation, 2026 NSF NHERI GSC Mini-Conference, 2026.
+    \item Second Prize, National College Students' Mathematics Modelling Competition, Team Leader, 09/2021.
+    \item Second Prize, National College Students' Mathematics Modelling Competition, 09/2020.
+    \item Honorable Mention, Mathematical Contest in Modeling (MCM/ICM), 09/2021.
+    \item Second Prize, Beijing Energy Conservation and Emission Reduction Competition, Team Leader, 09/2021.
+    \item Key Project Leader, Summer Social Practice by the College, 09/2021.
+\end{itemize}
+
+\section*{PROFESSIONAL MEMBERSHIPS}
+\begin{itemize}
+    \item American Society of Civil Engineers (ASCE), Student Member.
+    \item American Geophysical Union (AGU), Student Member.
+\end{itemize}
+
+\section*{TECHNICAL SKILLS}
+\begin{itemize}
+    \item \textbf{Geospatial analysis:} ArcGIS Pro, ArcMap, GIS-based spatial analysis, raster data processing, susceptibility mapping.
+    \item \textbf{Programming and data analysis:} Python, Jupyter Notebook, MATLAB, statistical analysis, Microsoft Office Suite.
+    \item \textbf{Machine learning and interpretation:} Ensemble machine learning, trustworthy AI, causal and explainable AI, SHAP analysis, model evaluation and visualization.
+    \item \textbf{Specialized software:} SPSS, Stata, Citespace, Origin. \textbf{Languages:} Mandarin Chinese (native), English (fluent). \textbf{Certificates:} CET-4, CET-6.
+\end{itemize}
+
+\section*{SELECTED INTERESTS}
+Swimming; model aviation; Pokemon Trading Card Game.
+
+\end{document}

@@ -10,13 +10,13 @@
   todo: "TODO: Add PDF, code, data, and representative figure files when available."
 
 - title: "Spatially Robust Landslide Susceptibility Mapping"
-  status: "Ongoing / Under preparation"
+  status: "Under review"
   image_path: "images/projects/landslide-susceptibility-map.jpg"
   summary: "This project develops spatially robust landslide susceptibility models using landslide inventories, terrain and environmental conditioning factors, PU learning-based negative sampling, spatial cross-validation, and model interpretation methods."
   methods: "Landslide inventory analysis, PU learning, CatBoost, spatial cross-validation, SHAP, causal analysis, GIS."
   outputs: "Landslide susceptibility map, spatial cluster map, feature importance and interpretation plots."
   links: []
-  todo: "TODO: Add paper, poster, code, and representative figure links when available."
+  todo: "TODO: Add paper, poster, code, and representative figure links when available; add the publication link after acceptance."
 
 - title: "Self-Supervised Learning for Small-Sample Landslide Susceptibility Mapping"
   status: "Ongoing / Under preparation"
