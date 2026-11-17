@@ -1,4 +1,5 @@
 <script src="assets/js/main.min.js"></script>
+{% if page.url == '/' %}<script defer src="{{ '/assets/js/intro-terrain.js' | relative_url }}"></script>{% endif %}
 <script>
   (function () {
     var button = document.querySelector('#site-nav button');

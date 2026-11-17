@@ -1,9 +1,9 @@
 // Surface and type accents for the existing AcadHomepage layout.
-$profile-paper: #fafaf8;
-$profile-ink: #252d2e;
-$profile-muted: #525e60;
-$profile-petrol: #285d60;
-$profile-rule: #d9dedb;
+$profile-paper: #fff;
+$profile-ink: #20344b;
+$profile-muted: #50627a;
+$profile-blue: #285ca1;
+$profile-rule: #d6e3ee;
 $profile-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
 html, body, .masthead, .greedy-nav {
@@ -11,17 +11,21 @@ html, body, .masthead, .greedy-nav {
 }
 
 body { color: $profile-ink; }
-.masthead { border-bottom-color: $profile-rule; }
+.masthead {
+  border-top: 2px solid #315f91;
+  border-bottom-color: $profile-rule;
+  &, .greedy-nav { background-color: #f5f8fc; }
+}
 .greedy-nav {
   a { color: $profile-muted; }
-  .visible-links li:first-child a, a:hover { color: $profile-petrol; }
-  .visible-links a:before { height: 2px; background: $profile-petrol; }
+  .visible-links li:first-child a, a:hover { color: $profile-blue; }
+  .visible-links a:before { height: 2px; background: $profile-blue; }
   button {
     width: 40px;
     background: transparent;
-    color: $profile-petrol;
+    color: $profile-blue;
     .academic-icon { width: 21px; height: 21px; }
-    &:focus-visible { outline: 2px solid $profile-petrol; }
+    &:focus-visible { outline: 2px solid $profile-blue; }
   }
 }
 
@@ -29,6 +33,21 @@ body { color: $profile-ink; }
   box-shadow: 0 0 0 3px $profile-paper, 0 0 0 4px $profile-rule;
 }
 .author__employer, .author__urls, .author__urls_sm { color: $profile-muted; }
+
+.intro-terrain {
+  display: none;
+  .terrain-contour { stroke: #7caacc; fill: #f2f8fc; stroke-width: .85; }
+  .index-contour { stroke: #3977aa; stroke-width: 1.25; }
+}
+@media (min-width: 700px) {
+  .intro-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(155px, 27%);
+    gap: 1rem;
+    align-items: center;
+  }
+  .intro-terrain { display: block; width: 100%; height: auto; pointer-events: all; }
+}
 
 .academic-icon {
   width: 1.08em;
@@ -41,18 +60,18 @@ body { color: $profile-ink; }
     color: $profile-ink;
     border-bottom-color: $profile-rule;
     // A short survey scale sits at the far end of the existing heading rule.
-    background: repeating-linear-gradient(90deg, #b5c2bf 0, #b5c2bf 1px, transparent 1px, transparent 6px) right bottom / 25px 3px no-repeat;
+    background: repeating-linear-gradient(90deg, #9dbbd1 0, #9dbbd1 1px, transparent 1px, transparent 6px) right bottom / 31px 3px no-repeat;
   }
-  h1 .academic-icon { color: $profile-petrol; margin-right: .22em; }
-  a { color: $profile-petrol; text-decoration-color: #91aaa7; text-underline-offset: 3px; }
-  a:hover { color: #173f40; text-decoration-color: currentColor; }
-  .publication-entry { border-left: 2px solid #acc0bd; }
+  h1 .academic-icon { color: #3477aa; margin-right: .22em; }
+  a { color: $profile-blue; text-decoration-color: #a4bbd1; text-underline-offset: 3px; }
+  a:hover { color: #173d6d; text-decoration-color: currentColor; }
+  .publication-entry { border-left: 2px solid #9cbfda; }
   .cv-download {
-    background: $profile-petrol;
+    background: $profile-blue;
     border-radius: 3px;
     color: white;
     text-decoration: none;
-    &:hover { background: #204b4d; color: white; }
+    &:hover { background: #1b436e; color: white; }
   }
   .cv-download .academic-icon { margin-right: .25em; }
 }

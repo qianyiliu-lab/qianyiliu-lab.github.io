@@ -11,7 +11,11 @@ redirect_from:
 <span class="anchor" id="about-me"></span>
 
 <div class="homepage-intro" markdown="1">
+<div class="intro-lead" markdown="1">
 I am a PhD student in Civil Engineering at Stony Brook University. My research focuses on geohazard susceptibility assessment, remote sensing, GIS, and machine learning/deep learning methods for landslide and flood risk analysis. I am particularly interested in integrating geospatial data, physically meaningful environmental predictors, and explainable AI to improve the reliability and interpretability of hazard susceptibility mapping.
+
+{% include intro-terrain.html %}
+</div>
 
 **Research interests:** Geohazards, landslide susceptibility mapping, flood susceptibility assessment, remote sensing, GIS, machine learning, deep learning, explainable AI, self-supervised learning, and spatial validation.
 </div>
