@@ -8,7 +8,7 @@
     <div class="paper-authors">{{ pub.authors | markdownify }}</div>
     <p class="venue">{% if pub.status == "Under Review" %}Submitted to {% endif %}<em>{{ pub.venue }}</em></p>
     <div class="paper-links">
-      {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}">DOI <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>{% endif %}
+      {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}">DOI {% include academic-icon.html name="external" %}</a>{% endif %}
       {% if pub.pdf %}<a href="{{ pub.pdf }}">PDF</a>{% endif %}
       {% if pub.code %}<a href="{{ pub.code }}">Code</a>{% endif %}
       {% if pub.data %}<a href="{{ pub.data }}">Data</a>{% endif %}

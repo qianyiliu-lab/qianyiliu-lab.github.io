@@ -33,7 +33,7 @@ $academic-serif: Georgia, "Times New Roman", serif;
   ul { gap: 20px; }
   a { color: $academic-ink; }
   a:hover { color: $academic-green; text-decoration: underline; }
-  .academic-brand { font: 600 22px $academic-serif; }
+  .academic-brand { display: inline-flex; align-items: center; gap: 9px; font: 600 22px $academic-serif; }
   .small-navigation { display: none; }
   summary { cursor: pointer; }
 }
@@ -51,12 +51,22 @@ $academic-serif: Georgia, "Times New Roman", serif;
   h1:before { content: none; }
   h1 { font-size: 56px; font-weight: 500; line-height: 1.04; }
   h2 { font-size: 32px; font-weight: 500; margin-bottom: 20px; }
-  h2 i { color: $academic-green; font-size: 17px; vertical-align: 3px; margin-right: 5px; }
+  h2 .academic-icon { color: $academic-green; width: .86em; height: .86em; vertical-align: -.04em; margin-right: .12em; }
+  #research h2 .academic-icon { color: #536b43; }
+  #teaching h2 .academic-icon, #cv h2 .academic-icon { color: #5a6087; }
   h3, h4 { font-size: 21px; line-height: 1.32; }
   .text-link { display: inline-block; font-weight: 600; font-size: 14px; }
-  .text-link i, .paper-links i { font-size: .78em; }
+  .text-link .academic-icon, .paper-links .academic-icon { width: 1em; height: 1em; }
 }
 
+.academic-icon {
+  display: inline-block;
+  width: 1.22em;
+  height: 1.22em;
+  vertical-align: -.23em;
+  flex-shrink: 0;
+  pointer-events: none;
+}
 .academic-home, .academic-header {
   :focus-visible { outline: 3px solid #98651c; outline-offset: 3px; }
 }
@@ -83,7 +93,7 @@ $academic-serif: Georgia, "Times New Roman", serif;
 .profile-links {
   margin-top: 17px;
   a { font-size: 14px; font-weight: 650; }
-  i { margin-right: 3px; }
+  .academic-icon { margin-right: 3px; }
   .cv-action { color: white; background: $academic-green; padding: 8px 13px; border-radius: 4px; text-decoration: none; }
   .cv-action:hover { background: #18463b; }
 }
@@ -95,7 +105,7 @@ $academic-serif: Georgia, "Times New Roman", serif;
   padding: 38px 0;
   align-items: start;
   aside { border-left: 1px solid $academic-rule; padding-left: 25px; }
-  aside h2 i { color: #996244; }
+  aside h2 .academic-icon { color: #996244; }
   .paper-group { font: 650 14px/1.4 $global-font-family; color: $academic-green; margin: 20px 0 6px; }
 }
 .year, .project-state { font-size: 13px; font-weight: 650; color: $academic-muted; font-variant-numeric: tabular-nums; }
