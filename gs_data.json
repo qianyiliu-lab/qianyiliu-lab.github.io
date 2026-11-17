@@ -2,26 +2,26 @@
   "schema_version": 2,
   "source": "google_scholar",
   "scholar_id": "UmPI1h0AAAAJ",
-  "checked_at": "2026-11-17T22:13:23.029262+00:00",
-  "updated": "2026-09-05T11:42:42.098422+00:00",
-  "citedby": 48,
+  "checked_at": "2026-11-17T22:06:53.034717+00:00",
+  "updated": "2026-11-17T22:06:53.034717+00:00",
+  "citedby": 50,
   "publications": {
     "UmPI1h0AAAAJ:9yKSN-GCB0IC": {
       "author_pub_id": "UmPI1h0AAAAJ:9yKSN-GCB0IC",
       "bib": {
         "title": "Integrating Explainable Ensemble Machine Learning with Hydrodynamic Modeling to Assess Tropical Cyclone-Induced Flood Susceptibility"
       },
-      "num_citations": 1,
-      "updated": "2026-09-05T11:42:42.098422+00:00"
+      "num_citations": 2,
+      "updated": "2026-11-17T22:06:53.034717+00:00"
     },
     "UmPI1h0AAAAJ:u5HHmVD_uO8C": {
       "author_pub_id": "UmPI1h0AAAAJ:u5HHmVD_uO8C",
       "bib": {
         "title": "A prediction method of fire frequency: Based on the optimization of SARIMA model"
       },
-      "num_citations": 46,
-      "updated": "2026-09-05T11:42:42.098422+00:00"
+      "num_citations": 47,
+      "updated": "2026-11-17T22:06:53.034717+00:00"
     }
   },
-  "scholar_status": "unavailable"
+  "scholar_status": "complete"
 }
