@@ -1,0 +1,30 @@
+{%- comment -%}Use scholar="true" to add Google Scholar; label overrides the group name.{%- endcomment -%}
+{%- assign profile_keys = 'email,orcid,github,linkedin,googlescholar' | split: ',' -%}
+<div class="profile-links" role="group" aria-label="{{ include.label | default: 'Contact and profiles' | escape }}">
+  {%- for key in profile_keys -%}
+    {%- assign url = site.author[key] -%}
+    {%- unless url and url != empty -%}{%- continue -%}{%- endunless -%}
+    {%- assign icon = key -%}
+    {%- case key -%}
+      {%- when 'email' -%}
+        {%- assign label = 'Email' -%}
+        {%- assign url = url | prepend: 'mailto:' -%}
+      {%- when 'orcid' -%}
+        {%- assign label = 'ORCID' -%}
+      {%- when 'github' -%}
+        {%- assign label = 'GitHub' -%}
+        {%- assign url = url | prepend: 'https://github.com/' -%}
+      {%- when 'linkedin' -%}
+        {%- assign label = 'LinkedIn' -%}
+        {%- assign url = url | prepend: 'https://www.linkedin.com/in/' -%}
+      {%- when 'googlescholar' -%}
+        {%- unless include.scholar == 'true' or include.scholar == true -%}{%- continue -%}{%- endunless -%}
+        {%- assign label = 'Google Scholar' -%}
+        {%- assign icon = 'google-scholar' -%}
+    {%- endcase -%}
+    <a class="profile-links__link" href="{{ url | escape }}" aria-label="{{ label }}">
+      <svg width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><use href="{{ '/assets/icons/profile-links.svg' | relative_url }}#{{ icon }}"></use></svg>
+      <span class="profile-links__tip" aria-hidden="true">{{ label }}</span>
+    </a>
+  {%- endfor -%}
+</div>

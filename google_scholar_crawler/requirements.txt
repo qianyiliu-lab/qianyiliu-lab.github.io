@@ -1,1 +1,3 @@
-scholarly==1.7.11
+beautifulsoup4==4.15.0
+Protego==0.7.0
+PyYAML==6.0.3

@@ -1,0 +1,49 @@
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0 .25rem;
+}
+
+/* Space below each row keeps the tooltip clear of neighboring page content. */
+.profile-links__link {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--blue, #174c7d);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.profile-links__link:hover,
+.profile-links__link:focus-visible {
+  background: #edf4fa;
+  color: #174c7d;
+}
+
+.profile-links__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.profile-links__tip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #174c7d;
+  color: white;
+  font: 500 12px/1.5 system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.profile-links__link:first-child .profile-links__tip { left: 0; transform: none; }
+.profile-links__link:last-child .profile-links__tip { left: auto; right: 0; transform: none; }
+.profile-links__link:hover .profile-links__tip,
+.profile-links__link:focus .profile-links__tip { visibility: visible; }

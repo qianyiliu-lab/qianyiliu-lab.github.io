@@ -3,24 +3,45 @@
     const papers = document.querySelectorAll('[data-scholar-id]');
     const total = document.getElementById('total_cit');
     if (!papers.length && !total) return;
+    const profile = {{ site.google_scholar_id | jsonify }};
     {% if site.google_scholar_stats_use_cdn %}
     const url = 'https://cdn.jsdelivr.net/gh/{{ site.repository }}@google-scholar-stats/gs_data.json';
     {% else %}
     const url = 'https://raw.githubusercontent.com/{{ site.repository }}/google-scholar-stats/gs_data.json';
     {% endif %}
-    fetch(url).then(function (response) {
-      if (!response.ok) throw new Error('Citation data unavailable');
+    fetch(url, {cache: 'no-cache'}).then(function (response) {
+      if (!response.ok) throw new Error('Citation snapshot unavailable');
       return response.json();
     }).then(function (data) {
-      if (total && Number.isInteger(data.citedby)) total.textContent = data.citedby;
+      if (!profile || data.scholar_id !== profile) return;
+      const legacy = data.schema_version === undefined && data.source === 'AUTHOR_PROFILE_PAGE';
+      if (!legacy && !(data.schema_version === 2 && data.source === 'google_scholar')) return;
+
+      function label(source, value, observed) {
+        if (!Number.isSafeInteger(value) || value < 0 || (legacy && value === 0) ||
+            typeof observed !== 'string' || !/^\d{4}-\d\d-\d\dT.*(?:Z|[+-]\d\d:\d\d)$/.test(observed)) return '';
+        const time = Date.parse(observed);
+        if (!Number.isFinite(time)) return '';
+        // Also flag old snapshots when the schedule stops running altogether.
+        const cached = legacy || observed !== data.checked_at || Date.now() - time > 2 * 86400000;
+        return source + ': ' + value + ' (' + (cached ? 'cached, ' : '') +
+          new Date(time).toISOString().slice(0, 10) + ')';
+      }
+
+      const profileLabel = label('Google Scholar', data.citedby, data.updated);
+      if (total) total.textContent = profileLabel || 'Google Scholar citations unavailable';
       papers.forEach(function (element) {
-        const paper = (data.publications || {})[element.dataset.scholarId];
-        if (paper && Number.isInteger(paper.num_citations)) {
-          element.textContent = 'Citations: ' + paper.num_citations;
-        }
+        const key = element.dataset.scholarId;
+        const entry = (data.publications || {})[key];
+        if (!key.startsWith(profile + ':') || !entry || entry.author_pub_id !== key ||
+            (legacy && entry.source !== 'AUTHOR_PUBLICATION_ENTRY')) return;
+        const scholar = label('Google Scholar', entry.num_citations, legacy ? data.updated : entry.updated);
+        const fallback = !legacy && entry.crossref;
+        const other = fallback && label('Crossref (fallback)', fallback.num_citations, fallback.updated);
+        element.textContent = scholar || other || 'Google Scholar citations unavailable';
       });
     }).catch(function () {
-      // The server-rendered label already indicates that a count is unavailable.
+      // Leave the server-rendered unavailable state on a transport or JSON error.
     });
   })();
 </script>

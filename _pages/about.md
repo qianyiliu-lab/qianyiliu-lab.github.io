@@ -10,16 +10,19 @@ redirect_from:
 
 {% assign author = site.author %}
 <header id="about-me" class="estuary">
-  <picture><source media="(max-width: 700px)" srcset="{{ '/images/pearl-river-estuary-small.webp' | relative_url }}"><img src="{{ '/images/pearl-river-estuary.webp' | relative_url }}" width="2000" height="1500" fetchpriority="high" alt=""></picture>
+  <picture>
+    <source media="(max-width: 700px)" srcset="{{ '/images/barry-arm-mobile-720.webp' | relative_url }} 720w, {{ '/images/barry-arm-mobile-1600.webp' | relative_url }} 1600w" sizes="(max-width: 480px) 480px, 100vw" data-lens-src="{{ '/images/barry-arm-mobile-1600.webp' | relative_url }}">
+    <img src="{{ '/images/barry-arm-1440.webp' | relative_url }}" srcset="{{ '/images/barry-arm-1440.webp' | relative_url }} 1440w, {{ '/images/barry-arm-2560.webp' | relative_url }} 2560w, {{ '/images/barry-arm-3840.webp' | relative_url }} 3840w, {{ '/images/barry-arm-detail.webp' | relative_url }} 6144w" sizes="(max-width: 1400px) 1400px, 100vw" data-lens-src="{{ '/images/barry-arm-detail.webp' | relative_url }}" width="1440" height="415" fetchpriority="high" alt="Steep slopes and glacier ice above the water at the Barry Arm landslide in Alaska.">
+  </picture>
   <div class="measure cover-inner">
     <p class="institution">{{ author.employer }}</p>
     <h1>{{ author.name }}</h1>
     <p class="role">{{ author.bio }}</p>
-    <p class="fields">Geospatial AI, geohazards, remote sensing, and machine learning</p>
+    <p class="fields">Geohazards, geospatial AI, remote sensing, and machine learning</p>
     <div class="cover-actions"><a class="cv-button" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
       <a href="{{ author.googlescholar | escape }}">Google Scholar {% include academic-icon.html name="external" %}</a></div>
   </div>
-  <a class="image-credit" href="https://science.nasa.gov/earth/earth-observatory/bridging-the-pearl-river-delta-88033/" title="Joshua Stevens and Jesse Allen, NASA Earth Observatory, using USGS Landsat data">Pearl River estuary &middot; Landsat 8 &middot; NASA / USGS</a>
+  <a class="image-credit" href="https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide" title="Original panorama by Tony Fischbach, U.S. Geological Survey">Barry Arm landslide, Alaska &middot; Tony Fischbach / USGS</a>
 </header>
 
 <div class="measure introduction">
@@ -27,7 +30,7 @@ redirect_from:
     <img src="{{ author.avatar | relative_url }}" width="86" height="104" alt="Portrait of Qianyi Liu">
     <div><h2 id="profile-heading">About me</h2>
       <p>I study where landslides and floods are likely to occur, and which environmental factors explain their distribution. At Stony Brook University, I combine remote sensing, GIS, and hydrodynamic modeling with machine learning to map susceptibility and test how well those maps hold up in new places.</p>
-      <div class="inline-links"><a href="mailto:{{ author.email }}">Email</a><a href="{{ author.orcid }}">ORCID</a><a href="https://github.com/{{ author.github }}">GitHub</a><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></div>
+      {% include profile-links.html label="Email and academic profiles" %}
     </div>
   </section>
   <aside id="awards-news"><h2>News &amp; awards</h2>
@@ -85,5 +88,5 @@ redirect_from:
 <footer id="contact"><div class="measure foot">
   <div><h2>Contact</h2><a class="email" href="mailto:{{ author.email }}">{{ author.email }}</a>
     <p>Department of Civil Engineering, {{ author.employer }}<br>{{ author.location }}</p></div>
-  <div class="inline-links"><a href="{{ author.googlescholar | escape }}">Google Scholar</a><a href="{{ author.orcid }}">ORCID</a><a href="https://github.com/{{ author.github }}">GitHub</a><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></div>
+  {% include profile-links.html scholar="true" label="Contact and academic profiles" %}
 </div></footer>

@@ -20,7 +20,7 @@ The site is based on the AcadHomepage template and remains a static Jekyll site 
 - `images/qianyi-liu-profile.jpg` - public profile photo.
 - `assets/pdf/Qianyi_Liu_CV.pdf` - downloadable CV.
 
-The cover uses a Landsat 8 observation of the Pearl River estuary from March 27, 2016. The two local WebP sizes are derivatives of [Bridging the Pearl River Delta](https://science.nasa.gov/earth/earth-observatory/bridging-the-pearl-river-delta-88033/) by Joshua Stevens and Jesse Allen, NASA Earth Observatory, using Landsat data from the U.S. Geological Survey. The pointer trace is optional decoration and is disabled for touch input and reduced motion.
+The cover is [Panorama view of Barry Arm Landslide](https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide), a public-domain field photograph by Tony Fischbach of the U.S. Geological Survey. It illustrates a geohazard setting, not an author field site. The 9440 x 2720 original is served as responsive WebP derivatives, with a mountain-centered crop on narrow screens. The optional desktop lens uses a higher-resolution derivative of the same photograph.
 
 ## Local Preview
 
@@ -48,7 +48,9 @@ Open http://127.0.0.1:4000 after the server starts.
 
 ## Google Scholar Citation Automation
 
-The citation workflow runs daily at 08:00 UTC and can also be started manually from GitHub Actions. It publishes citation data to the `google-scholar-stats` branch using the repository's built-in `GITHUB_TOKEN`. The public Google Scholar ID is configured in the workflow; no private credentials are stored in the repository.
+The [citation workflow](https://github.com/qianyiliu-lab/qianyiliu-lab.github.io/actions/workflows/google_scholar_crawler.yaml) is scheduled daily at 08:17 UTC. It can also be started with **Run workflow**. It checks the public Google Scholar profile `UmPI1h0AAAAJ` and matches entries in `_data/publications.yml` by their explicit Scholar IDs and titles. It updates counts for listed papers; it does not add new publications or change editorial selections.
+
+The date beside a count is the date that source returned the number, not merely the date the job ran. If Scholar blocks a request or a count cannot be verified, the site keeps the last verified value and labels it cached. A Crossref count, if available when no Scholar observation exists, is identified separately and is not a Google Scholar count. The Actions summary records each attempt. The data branch is `google-scholar-stats`; publishing uses the built-in `GITHUB_TOKEN`, with no additional secrets required. If scheduling stops after a period of inactivity, see [GitHub's instructions for re-enabling workflows](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows).
 
 ## Remaining Content TODOs
 

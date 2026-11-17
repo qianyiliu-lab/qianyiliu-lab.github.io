@@ -1,10 +1,13 @@
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="icon" type="image/svg+xml" sizes="any" href="{{ '/images/terrain-mark.svg' | relative_url }}">
-<link rel="manifest" href="images/site.webmanifest">
+{% assign icon_version = 'ql1' %}
+<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="{{ '/favicon.ico' | relative_url }}?v={{ icon_version }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16x16.png' | relative_url }}?v={{ icon_version }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}?v={{ icon_version }}">
+<link rel="icon" type="image/svg+xml" sizes="any" href="{{ '/images/ql-mark.svg' | relative_url }}?v={{ icon_version }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}?v={{ icon_version }}">
+<link rel="manifest" href="{{ '/images/site.webmanifest' | relative_url }}?v={{ icon_version }}">
+<link rel="stylesheet" href="{{ '/assets/icons/profile-links.css' | relative_url }}">
 
-<meta name="msapplication-TileColor" content="#214f83">
+<meta name="msapplication-TileColor" content="#174c7d">
 <meta name="theme-color" content="#f5f8fc">
 {% unless page.layout == 'profile' %}<link rel="stylesheet" href="{{ '/assets/css/academicons.css' | relative_url }}">{% endunless %}
 {% if page.math %}

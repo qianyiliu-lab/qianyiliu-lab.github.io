@@ -9,14 +9,18 @@
     <header class="mast">
       <nav class="measure nav-row" aria-label="Main navigation">
         <a class="wordmark" href="#about-me">{{ site.author.name }}</a>
+        <button type="button" class="survey-toggle" aria-pressed="false" hidden><span aria-hidden="true"></span>Survey lens</button>
         {% capture links %}<ul>{% for link in site.data.navigation.main %}{% unless link.url == "/#about-me" %}<li><a href="{{ link.url | remove_first: '/' }}">{{ link.title | escape }}</a></li>{% endunless %}{% endfor %}</ul>{% endcapture %}
         <div class="desktop-nav">{{ links }}</div>
         <details class="mobile-nav"><summary>{% include academic-icon.html name="menu" %} Menu</summary>{{ links }}</details>
       </nav>
     </header>
     <main id="main">{{ content }}</main>
-    <span class="survey-pointer" aria-hidden="true"></span>
-    <script defer src="{{ '/assets/js/survey-pointer.js' | relative_url }}?v=ink1"></script>
+    <div class="survey-lens" aria-hidden="true" hidden>
+      <span class="survey-lens__surface"></span><span class="survey-lens__scale">2&times;</span>
+    </div>
+    <span class="survey-locator" aria-hidden="true" hidden></span>
+    <script defer src="{{ '/assets/js/survey-pointer.js' | relative_url }}?v=lens1"></script>
     <script>
       const menu = document.querySelector('.mobile-nav');
       document.addEventListener('click', event => {

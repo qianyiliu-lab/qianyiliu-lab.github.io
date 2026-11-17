@@ -30,7 +30,7 @@ a:focus-visible, summary:focus-visible { outline: 3px solid #3c8ac3; outline-off
 .skip-link:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .mast { position: sticky; top: 0; z-index: 10; background: var(--paper); }
-.nav-row, .nav-row ul, .wordmark, .cover-actions, .inline-links, .section-heading, .paper-links { display: flex; align-items: center; }
+.nav-row, .nav-row ul, .wordmark, .cover-actions, .section-heading, .paper-links { display: flex; align-items: center; }
 .nav-row { position: relative; justify-content: space-between; min-height: 66px; gap: 24px; }
 .nav-row ul, .news { padding: 0; list-style: none; }
 .nav-row ul { gap: 22px; }
@@ -42,8 +42,8 @@ a:focus-visible, summary:focus-visible { outline: 3px solid #3c8ac3; outline-off
 .estuary { position: relative; isolation: isolate; color: white; background: #16364b; }
 .estuary picture, .estuary picture img, .estuary::before { position: absolute; inset: 0; width: 100%; height: 100%; }
 .estuary picture { z-index: -2; }
-.estuary picture img { object-fit: cover; object-position: 50% 32%; }
-.estuary::before { content: ""; z-index: -1; background: linear-gradient(90deg,rgba(8,29,44,.96),rgba(9,33,47,.85) 30%,rgba(9,32,45,.44) 58%,rgba(9,32,45,.04) 82%); }
+.estuary picture img { object-fit: cover; object-position: 50% 52%; }
+.estuary::before { content: ""; z-index: -1; background: linear-gradient(90deg,rgba(9,25,38,.84),rgba(12,28,40,.72) 29%,rgba(12,28,40,.18) 56%,transparent 73%); }
 .cover-inner { padding-block: 58px 68px; }
 .institution { font-size: 15px; color: #f1f3f4; }
 .estuary h1 { margin: 17px 0 12px; font-size: 88px; line-height: 1.04; }
@@ -60,8 +60,7 @@ a:focus-visible, summary:focus-visible { outline: 3px solid #3c8ac3; outline-off
 .bio img { display: block; width: 78px; height: 98px; object-fit: cover; border-radius: 3px; }
 .introduction h2 { font-size: 24px; margin-bottom: 12px; }
 .bio p { color: var(--secondary); }
-.inline-links { flex-wrap: wrap; gap: 5px 17px; font-size: 14px; font-weight: 600; }
-.bio .inline-links { margin-top: 13px; }
+.bio .profile-links { margin: 10px 0 0 -.75rem; }
 .introduction aside { padding-left: 12px; }
 .news li { display: grid; grid-template-columns: 44px 1fr; gap: 10px; padding: 8px 0; font-size: 15px; line-height: 1.48; }
 .news a { color: var(--ink); text-decoration: none; }
@@ -139,9 +138,9 @@ summary { cursor: pointer; }
   .measure { padding-inline: 22px; }
   .nav-row { min-height: 54px; }
   .mobile-nav ul { right: 16px; }
-  .estuary::before { background: linear-gradient(90deg,rgba(8,29,44,.92),rgba(9,33,47,.79) 50%,rgba(9,32,45,.28)); }
-  .estuary picture img { object-position: 62% 50%; }
-  .cover-inner { padding-block: 34px 54px; }
+  .estuary::before { background: linear-gradient(0deg,rgba(8,23,34,.88),rgba(8,23,34,.74) 42%,rgba(8,23,34,.40) 68%,transparent 96%); }
+  .estuary picture img { object-position: 50% 52%; }
+  .cover-inner { padding-block: 100px 52px; }
   .estuary h1 { font-size: 60px; margin-block: 14px 11px; }
   .role { font-size: 19px; }
   .fields { max-width: 37ch; font-size: 15px; }
@@ -173,6 +172,7 @@ summary { cursor: pointer; }
   html { scroll-padding-top: 8px; }
   .nav-row { min-height: 48px; }
   .cover-inner { padding-block: 16px 31px; }
+  .estuary::before { background: linear-gradient(90deg,rgba(8,23,34,.88),rgba(8,23,34,.76) 46%,transparent 91%); }
   .estuary h1 { font-size: 48px; margin: 4px 0; }
   .cover-actions { margin-top: 10px; }
   .mobile-nav ul { max-height: calc(100vh - 52px); overflow-y: auto; }
