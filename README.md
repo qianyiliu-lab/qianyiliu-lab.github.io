@@ -24,6 +24,8 @@ The cover is [Panorama view of Barry Arm Landslide](https://www.usgs.gov/media/i
 
 ## Local Preview
 
+The biography opens a research Q&A panel. Its suggested questions use the homepage's public content and never call the API. Free-form answers require the separately deployed Cloudflare Worker in `research-assistant/` and an explicitly enabled, still-funded grant. Only its public HTTPS origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or personal billing information in this repository. The backend directory is excluded from the Pages build.
+
 Install Ruby and Bundler, then run:
 
 ```bash

@@ -1,0 +1,27 @@
+<dialog id="research-qa" class="research-qa" aria-labelledby="qa-title" data-origin="{{ site.research_assistant_origin | escape }}">
+  <div class="qa-head">
+    <div><p class="qa-byline">{{ site.author.name }}</p><h2 id="qa-title">Research Q&amp;A</h2></div>
+    <button class="qa-close" type="button" aria-label="Close research Q&amp;A" title="Close" autofocus>{% include academic-icon.html name="close" %}</button>
+  </div>
+  <div class="qa-body">
+    <p class="qa-mode" aria-live="polite">Homepage guide</p>
+    <div class="qa-transcript" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
+    <div class="qa-options" role="group" aria-label="Questions answered by the homepage">
+      <button type="button" data-topic="research">What hazards does Qianyi study?</button>
+      <button type="button" data-topic="paper">Which paper should I read first?</button>
+      <button type="button" data-topic="projects">Which projects are ongoing?</button>
+      <button type="button" data-topic="contact">How can I get in touch?</button>
+    </div>
+  </div>
+  <form class="qa-form" hidden>
+    <label for="qa-question">Ask a research question</label>
+    <div class="qa-compose"><textarea id="qa-question" rows="2" maxlength="480" placeholder="Ask about a paper, method, or project"></textarea>
+    <button class="qa-send" type="submit" aria-label="Send question" title="Send question" disabled>{% include academic-icon.html name="send" %}</button></div>
+    <small>Free-form questions and recent turns are sent to OpenAI. Please leave out personal information.</small>
+  </form>
+  <template data-answer="research"><p>Qianyi studies where landslides and floods are likely to occur. His research uses remote sensing, terrain data and machine learning to identify the environmental factors behind those patterns, and tests how well the resulting maps transfer to new areas.</p><a href="#research">Research directions</a></template>
+  {% assign first_paper = site.data.publications | where: 'selected', true | first %}
+  <template data-answer="paper">{% if first_paper %}<p>Start with <em>{{ first_paper.title | escape }}</em>, published in <em>{{ first_paper.venue | escape }}</em> in {{ first_paper.year }}.</p>{% if first_paper.doi %}<a href="https://doi.org/{{ first_paper.doi | escape }}">Read the paper</a>{% endif %}{% endif %}<a href="#publications">Publications</a></template>
+  <template data-answer="projects">{% for item in site.data.projects %}{% unless item.status == 'Published' %}<p><strong>{{ item.title | escape }}</strong><br>{{ item.status | escape }}</p>{% endunless %}{% endfor %}<a href="#projects">Projects and methods</a></template>
+  <template data-answer="contact"><p>Qianyi is a PhD student in the Department of Civil Engineering at Stony Brook University.</p><a href="mailto:{{ site.author.email | escape }}">{{ site.author.email | escape }}</a><a href="#contact">Contact and academic profiles</a></template>
+</dialog>

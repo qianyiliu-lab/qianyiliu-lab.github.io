@@ -30,7 +30,10 @@ redirect_from:
     <img src="{{ author.avatar | relative_url }}" width="86" height="104" alt="Portrait of Qianyi Liu">
     <div><h2 id="profile-heading">About me</h2>
       <p>I study where landslides and floods are likely to occur, and which environmental factors explain their distribution. At Stony Brook University, I combine remote sensing, GIS, and hydrodynamic modeling with machine learning to map susceptibility and test how well those maps hold up in new places.</p>
-      {% include profile-links.html label="Email and academic profiles" %}
+      <div class="bio-actions">
+        {% include profile-links.html label="Email and academic profiles" %}
+        <button class="ask-launch" type="button" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %} Research Q&amp;A</button>
+      </div>
     </div>
   </section>
   <aside id="awards-news"><h2>News &amp; awards</h2>

@@ -6,6 +6,8 @@ url                      : "https://qianyiliu-lab.github.io"
 baseurl                  : ""
 google_scholar_stats_use_cdn : false
 google_scholar_id        : "UmPI1h0AAAAJ"
+# Public HTTPS Worker origin only. Without a configured backend, Q&A uses local sources.
+research_assistant_origin: ""
 
 # Google Analytics
 google_analytics_id      :
@@ -61,6 +63,7 @@ include:
   - _pages
   - files
 exclude:
+  - research-assistant
   - docs
   - google_scholar_crawler
   - AGENTS.md
