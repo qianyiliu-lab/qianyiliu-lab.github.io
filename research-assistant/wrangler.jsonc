@@ -1,0 +1,13 @@
+{
+  "name": "qianyi-research-assistant",
+  "main": "src/index.js",
+  "compatibility_date": "2026-05-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "vars": { "ENABLED": "false" },
+  "durable_objects": {
+    "bindings": [{ "name": "LEDGER", "class_name": "BudgetLedger" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["BudgetLedger"] }]
+}

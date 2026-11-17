@@ -17,7 +17,7 @@
     <label for="qa-question">Ask a research question</label>
     <div class="qa-compose"><textarea id="qa-question" rows="2" maxlength="480" placeholder="Ask about a paper, method, or project"></textarea>
     <button class="qa-send" type="submit" aria-label="Send question" title="Send question" disabled>{% include academic-icon.html name="send" %}</button></div>
-    <small>Free-form questions and recent turns are sent to OpenAI. Please leave out personal information.</small>
+    <small>Questions and recent turns go to OpenAI and may be retained for abuse monitoring. Please leave out personal information.</small>
   </form>
   <template data-answer="research"><p>Qianyi studies where landslides and floods are likely to occur. His research uses remote sensing, terrain data and machine learning to identify the environmental factors behind those patterns, and tests how well the resulting maps transfer to new areas.</p><a href="#research">Research directions</a></template>
   {% assign first_paper = site.data.publications | where: 'selected', true | first %}

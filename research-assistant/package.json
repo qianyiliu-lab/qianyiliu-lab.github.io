@@ -1,0 +1,14 @@
+{
+  "name": "qianyi-research-assistant",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "test": "node --test",
+    "check:bundle": "wrangler deploy --dry-run --outdir dist"
+  },
+  "devDependencies": {
+    "miniflare": "5.20261116.0-beta",
+    "wrangler": "4.163.0"
+  }
+}
