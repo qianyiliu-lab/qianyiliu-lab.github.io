@@ -34,19 +34,27 @@ body { color: $profile-ink; }
 }
 .author__employer, .author__urls, .author__urls_sm { color: $profile-muted; }
 
-.intro-terrain {
+.survey-pointer {
   display: none;
-  .terrain-contour { stroke: #7caacc; fill: #f2f8fc; stroke-width: .85; }
-  .index-contour { stroke: #3977aa; stroke-width: 1.25; }
-}
-@media (min-width: 700px) {
-  .intro-lead {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(155px, 27%);
-    gap: 1rem;
-    align-items: center;
+  @media screen and (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+    display: block;
+    position: fixed;
+    left: -20px;
+    top: -20px;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transition: opacity 140ms ease-out;
+    &.is-visible { opacity: 1; }
+    &.is-over-link .survey-pointer__ring { transform: rotate(45deg) scale(.77); }
+    &__ring {
+      transform-origin: 20px 20px;
+      transition: transform 160ms ease-out;
+    }
   }
-  .intro-terrain { display: block; width: 100%; height: auto; pointer-events: all; }
 }
 
 .academic-icon {
