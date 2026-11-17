@@ -52,6 +52,8 @@ The [citation workflow](https://github.com/qianyiliu-lab/qianyiliu-lab.github.io
 
 The date beside a count is the date that source returned the number, not merely the date the job ran. If Scholar blocks a request or a count cannot be verified, the site keeps the last verified value and labels it cached. A Crossref count, if available when no Scholar observation exists, is identified separately and is not a Google Scholar count. The Actions summary records each attempt. The data branch is `google-scholar-stats`; publishing uses the built-in `GITHUB_TOKEN`, with no additional secrets required. If scheduling stops after a period of inactivity, see [GitHub's instructions for re-enabling workflows](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/disable-and-enable-workflows).
 
+A separate, optional local backup runs `python google_scholar_crawler/weekly_backup.py` with the same pinned dependencies. It reads the latest data branch first and skips Scholar entirely when every listed paper has a verified observation less than seven days old. Otherwise it uses the same public-profile checks; it publishes just the two citation JSON files, by fast-forward only, when the stale counts can be verified. This backup needs a running local environment and authorized Git access to the data branch. It does not update the CV or the main branch.
+
 ## Remaining Content TODOs
 
 - Confirm full coauthor order and metadata for the Geoscience Frontiers publication.
