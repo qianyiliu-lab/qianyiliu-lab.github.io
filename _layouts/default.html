@@ -14,12 +14,9 @@ layout: compress
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
-    {% if page.academic_home %}
-    <main class="academic-home" id="main-content">{{ content }}</main>
-    {% else %}
     <div id="main" role="main">
       {% include sidebar.html %}
-    
+
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
         <div class="page__inner-wrap">
@@ -29,7 +26,6 @@ layout: compress
         </div>
       </article>
     </div>
-    {% endif %}
 
     {% include scripts.html %}
 

@@ -1,19 +1,23 @@
-{% if page.academic_home %}
+<script src="assets/js/main.min.js"></script>
 <script>
-  const menu = document.querySelector('.small-navigation');
-  document.addEventListener('click', function (event) {
-    if (menu.open && (!menu.contains(event.target) || event.target.closest('a'))) menu.open = false;
-  });
-  menu.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      menu.open = false;
-      menu.querySelector('summary').focus();
+  (function () {
+    var button = document.querySelector('#site-nav button');
+    var links = document.getElementById('more-links');
+    function syncMenuState() {
+      button.setAttribute('aria-expanded', String(!links.classList.contains('hidden')));
     }
-  });
+    new MutationObserver(syncMenuState).observe(links, { attributes: true, attributeFilter: ['class'] });
+    links.addEventListener('click', function (event) {
+      if (event.target.closest('a') && !links.classList.contains('hidden')) button.click();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !links.classList.contains('hidden')) {
+        button.click();
+        button.focus();
+      }
+    });
+  })();
 </script>
-{% else %}
-<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
-{% endif %}
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
