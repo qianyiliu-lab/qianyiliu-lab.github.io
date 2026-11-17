@@ -1,0 +1,31 @@
+// Decorative only: the OS cursor and all native hit targets stay in place.
+svg.ink-pointer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+
+  @media screen and (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+    &.is-tracing { display: block; }
+  }
+
+  // Pale casing separates cobalt from dark surfaces; the second, finer
+  // contour has its own blue edge to retain definition on white paper.
+  path { stroke-linejoin: round; }
+  .ink-pointer__stroke {
+    fill: #1762bd;
+    stroke: #b8e6ff;
+    stroke-width: .8;
+  }
+  .ink-pointer__contour {
+    fill: #6ec8ff;
+    stroke: #247eae;
+    stroke-width: .45;
+  }
+}

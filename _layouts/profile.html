@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header class="mast">
+      <nav class="measure nav-row" aria-label="Main navigation">
+        <a class="wordmark" href="#about-me">{{ site.author.name }}</a>
+        {% capture links %}<ul>{% for link in site.data.navigation.main %}{% unless link.url == "/#about-me" %}<li><a href="{{ link.url | remove_first: '/' }}">{{ link.title | escape }}</a></li>{% endunless %}{% endfor %}</ul>{% endcapture %}
+        <div class="desktop-nav">{{ links }}</div>
+        <details class="mobile-nav"><summary>{% include academic-icon.html name="menu" %} Menu</summary>{{ links }}</details>
+      </nav>
+    </header>
+    <main id="main">{{ content }}</main>
+    <span class="survey-pointer" aria-hidden="true"></span>
+    <script defer src="{{ '/assets/js/survey-pointer.js' | relative_url }}?v=ink1"></script>
+    <script>
+      const menu = document.querySelector('.mobile-nav');
+      document.addEventListener('click', event => {
+        if (menu.open && (!menu.contains(event.target) || event.target.closest('a'))) menu.open = false;
+      });
+      menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          menu.open = false;
+          menu.querySelector('summary').focus();
+        }
+      });
+    </script>
+    {% include analytics.html %}
+    {% include fetch_google_scholar_stats.html %}
+  </body>
+</html>

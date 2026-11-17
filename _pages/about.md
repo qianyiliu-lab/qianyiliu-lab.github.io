@@ -1,129 +1,89 @@
 ---
+layout: profile
 permalink: /
 title: "Qianyi Liu"
 excerpt: "Qianyi Liu studies landslide and flood susceptibility using geospatial AI, remote sensing, and hydrodynamic modeling at Stony Brook University."
-author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
-<span class="anchor" id="about-me"></span>
+{% assign author = site.author %}
+<header id="about-me" class="estuary">
+  <picture><source media="(max-width: 700px)" srcset="{{ '/images/pearl-river-estuary-small.webp' | relative_url }}"><img src="{{ '/images/pearl-river-estuary.webp' | relative_url }}" width="2000" height="1500" fetchpriority="high" alt=""></picture>
+  <div class="measure cover-inner">
+    <p class="institution">{{ author.employer }}</p>
+    <h1>{{ author.name }}</h1>
+    <p class="role">{{ author.bio }}</p>
+    <p class="fields">Geospatial AI, geohazards, remote sensing, and machine learning</p>
+    <div class="cover-actions"><a class="cv-button" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
+      <a href="{{ author.googlescholar | escape }}">Google Scholar {% include academic-icon.html name="external" %}</a></div>
+  </div>
+  <a class="image-credit" href="https://science.nasa.gov/earth/earth-observatory/bridging-the-pearl-river-delta-88033/" title="Joshua Stevens and Jesse Allen, NASA Earth Observatory, using USGS Landsat data">Pearl River estuary &middot; Landsat 8 &middot; NASA / USGS</a>
+</header>
 
-<div class="homepage-intro" markdown="1">
-I am a PhD student in Civil Engineering at Stony Brook University. My research focuses on geohazard susceptibility assessment, remote sensing, GIS, and machine learning/deep learning methods for landslide and flood risk analysis. I am particularly interested in integrating geospatial data, physically meaningful environmental predictors, and explainable AI to improve the reliability and interpretability of hazard susceptibility mapping.
-
-**Research interests:** Geohazards, landslide susceptibility mapping, flood susceptibility assessment, remote sensing, GIS, machine learning, deep learning, explainable AI, self-supervised learning, and spatial validation.
-</div>
-
-<h1 id="awards-news">{% include academic-icon.html name="awards" %} News &amp; Awards</h1>
-
-{% for item in site.data.news %}
-{% unless item.date == "TODO" %}
-- *{{ item.date }}* {% if item.url %}[{{ item.text }}]({{ item.url }}){% else %}{{ item.text }}{% endif %}
-{% endunless %}
-{% endfor %}
-
-<h1 id="research">{% include academic-icon.html name="research" %} Research</h1>
-
-My research develops data-driven and physically informed methods for understanding and mapping natural hazards. Current directions include:
-
-<div class="research-list">
-{% for theme in site.data.research %}
-  <section class="research-theme" markdown="1">
-  <h3>{{ forloop.index }}. {{ theme.title }}</h3>
-
-  {{ theme.description }}
-
-  <p class="research-keywords"><strong>Keywords:</strong> {{ theme.keywords | join: ", " }}.</p>
+<div class="measure introduction">
+  <section class="bio" aria-labelledby="profile-heading">
+    <img src="{{ author.avatar | relative_url }}" width="86" height="104" alt="Portrait of Qianyi Liu">
+    <div><h2 id="profile-heading">About me</h2>
+      <p>I study where landslides and floods are likely to occur, and which environmental factors explain their distribution. At Stony Brook University, I combine remote sensing, GIS, and hydrodynamic modeling with machine learning to map susceptibility and test how well those maps hold up in new places.</p>
+      <div class="inline-links"><a href="mailto:{{ author.email }}">Email</a><a href="{{ author.orcid }}">ORCID</a><a href="https://github.com/{{ author.github }}">GitHub</a><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></div>
+    </div>
   </section>
-{% endfor %}
+  <aside id="awards-news"><h2>News &amp; awards</h2>
+    <ul class="news">{% for item in site.data.news %}{% unless item.date == "TODO" %}
+      <li><span class="meta">{{ item.date }}</span><span>{% if item.url %}<a href="{{ item.url }}">{{ item.text | escape }}</a>{% else %}{{ item.text | escape }}{% endif %}</span></li>
+    {% endunless %}{% endfor %}</ul>
+  </aside>
 </div>
 
-<h1 id="publications">{% include academic-icon.html name="publications" %} Publications</h1>
-
-## Selected Publications
-
-{% assign selected_pubs = site.data.publications | where: "selected", true %}
-{% for pub in selected_pubs %}
-<article class="publication-entry" markdown="1">
-### {% if pub.doi %}[{{ pub.title }}](https://doi.org/{{ pub.doi }}){% else %}{{ pub.title }}{% endif %}
-
-{{ pub.authors | markdownify }}
-
-*{{ pub.venue }}*, {{ pub.year }}.{% if pub.doi %} [DOI](https://doi.org/{{ pub.doi }}){% endif %}{% if pub.pdf %} | [PDF]({{ pub.pdf }}){% endif %}{% if pub.code %} | [Code]({{ pub.code }}){% endif %}{% if pub.data %} | [Data]({{ pub.data }}){% endif %}{% if pub.bibtex %} | [BibTeX]({{ pub.bibtex }}){% endif %}{% if pub.scholar_id %} <span class="show_paper_citations" data-scholar-id="{{ pub.scholar_id }}">Citations unavailable</span>{% endif %}
-</article>
-{% endfor %}
-
-## Manuscripts Under Review
-
-{% assign under_review_pubs = site.data.publications | where: "status", "Under Review" %}
-{% for pub in under_review_pubs %}
-<article class="publication-entry" markdown="1">
-### {{ pub.title }}
-
-{{ pub.authors | markdownify }}
-
-Submitted to *{{ pub.venue }}*, {{ pub.year }}. **Status: {{ pub.status }}.**
-</article>
-{% endfor %}
-
-<h1 id="projects">{% include academic-icon.html name="projects" %} Projects</h1>
-
-<div class="project-list">
-{% for project in site.data.projects %}
-  <article class="project-entry" markdown="1">
-  <p class="project-status">{{ project.status }}</p>
-
-  <h2>{{ project.title }}</h2>
-
-  {{ project.summary }}
-
-  **Methods and tools:** {{ project.methods }}
-
-  **Representative outputs:** {{ project.outputs }}
-
-  {% if project.links and project.links.size > 0 %}
-  <p class="resource-links">
-  {% for link in project.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %}<span aria-hidden="true"> / </span>{% endunless %}{% endfor %}
-  </p>
+<section class="band papers" id="publications"><div class="measure">
+  <div class="section-heading"><h2>Publications</h2>
+    <a href="{{ author.googlescholar | escape }}">Full list on Google Scholar</a>
+  </div>
+  <div class="pub-body">
+  {% assign published = site.data.publications | where_exp: "p", "p.status != 'Under Review'" %}
+  {% assign selected = published | where: "selected", true %}
+  {% assign others = published | where_exp: "p", "p.selected != true" %}
+  {% assign review = site.data.publications | where: "status", "Under Review" %}
+  {% if selected.size > 0 %}<h3 class="{% if others.size > 0 %}subhead{% else %}sr-only{% endif %}">Selected publications</h3>{% include bibliography.html records=selected %}{% endif %}
+  {% if others.size > 0 %}<h3 class="subhead">Other publications</h3>{% include bibliography.html records=others %}{% endif %}
+  {% if review.size > 0 %}
+  <details class="review-list"><summary>Manuscripts under review <span>({{ review.size }})</span></summary>{% include bibliography.html records=review %}</details>
   {% endif %}
-  </article>
-{% endfor %}
-</div>
+  </div>
+</div></section>
 
-<h1 id="teaching">{% include academic-icon.html name="teaching" %} Teaching</h1>
+<section class="band" id="research"><div class="measure">
+  <div class="section-heading"><h2>Research directions</h2></div>
+  <div class="research-grid">{% for theme in site.data.research %}
+    <article><h3>{{ theme.title }}</h3><p>{{ theme.description }}</p></article>
+  {% endfor %}</div>
+</div></section>
 
-{% for item in site.data.teaching %}
-- **{{ item.role }}, {{ item.course }}**, {{ item.institution }}{% unless item.semester contains "TODO" %}, {{ item.semester }}{% endunless %}.{% unless item.description contains "TODO" %} {{ item.description }}{% endunless %}
-{% endfor %}
+<section class="band" id="projects"><div class="measure">
+  <div class="section-heading"><h2>Projects</h2></div>
+  {% for project in site.data.projects %}
+  <article class="project"><p class="meta">{{ project.status }}</p><div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
+    <details><summary>Methods and outputs</summary><p><strong>Methods</strong> &middot; {{ project.methods }}</p><p><strong>Outputs</strong> &middot; {{ project.outputs }}</p></details>
+    {% for link in project.links %}<a class="project-resource" href="{{ link.url }}">{% if link.label == 'DOI' %}Read the paper{% else %}{{ link.label }}{% endif %}</a>{% endfor %}
+  </div></article>{% endfor %}
+</div></section>
 
-<h1 id="cv">{% include academic-icon.html name="cv" %} CV</h1>
+<div class="band"><div class="measure service">
+  <section id="teaching"><h2>Teaching</h2>
+    {% for course in site.data.teaching %}<div class="course"><h3>{{ course.course }}</h3><p>{{ course.role }}, {{ course.institution }}{% if course.semester %}{% unless course.semester contains "TODO" %}, {{ course.semester }}{% endunless %}{% endif %}.</p>
+      {% if course.description %}{% unless course.description contains "TODO" %}<p>{{ course.description }}</p>{% endunless %}{% endif %}</div>{% endfor %}
+  </section>
+  <section id="cv"><h2>Curriculum vitae</h2>
+    <p>{{ author.bio }}<br>Department of Civil Engineering, {{ author.employer }}</p>
+    <a href="{{ author.cv | relative_url }}" download>Download CV (PDF) {% include academic-icon.html name="download" %}</a>
+    <details><summary>Technical skills</summary><p>Python, MATLAB, R, SQL &middot; ArcGIS Pro, ArcMap, Google Earth Engine, QGIS &middot; scikit-learn, PyTorch, XGBoost, LightGBM, CatBoost.</p></details>
+  </section>
+</div></div>
 
-<p><a class="btn btn--primary cv-download" href="/assets/pdf/Qianyi_Liu_CV.pdf" download="Qianyi_Liu_CV.pdf">{% include academic-icon.html name="download" %} Download CV</a></p>
-
-## Education
-
-- **PhD Student in Civil Engineering**, Stony Brook University.
-
-## Research Experience
-
-- Geohazard susceptibility assessment, remote sensing, GIS, and machine learning/deep learning for landslide and flood risk analysis.
-
-## Awards
-
-- First Place, Individual Poster Presentation, NSF NHERI GSC Mini-Conference, 2026.
-
-## Technical Skills
-
-- **Programming:** Python, MATLAB, R, SQL
-- **Geospatial tools:** ArcGIS Pro, ArcMap, Google Earth Engine, QGIS
-- **Machine learning and deep learning:** scikit-learn, PyTorch, XGBoost, LightGBM, CatBoost
-- **Research methods:** Remote sensing, geospatial analysis, hydrodynamic modeling, and geohazard susceptibility mapping
-
-<h1 id="contact">{% include academic-icon.html name="email" %} Contact</h1>
-
-- **Email:** [qianyi.liu@stonybrook.edu](mailto:qianyi.liu@stonybrook.edu)
-- **Affiliation:** Department of Civil Engineering, Stony Brook University
-- **Location:** Stony Brook, NY, USA
-- **Profiles:** [Google Scholar](https://scholar.google.com/citations?user=UmPI1h0AAAAJ&hl=en&authuser=2) / [ORCID](https://orcid.org/0009-0006-0161-4639) / [GitHub](https://github.com/qianyiliu) / [LinkedIn](https://www.linkedin.com/in/qianyi-liu-544783414)
+<footer id="contact"><div class="measure foot">
+  <div><h2>Contact</h2><a class="email" href="mailto:{{ author.email }}">{{ author.email }}</a>
+    <p>Department of Civil Engineering, {{ author.employer }}<br>{{ author.location }}</p></div>
+  <div class="inline-links"><a href="{{ author.googlescholar | escape }}">Google Scholar</a><a href="{{ author.orcid }}">ORCID</a><a href="https://github.com/{{ author.github }}">GitHub</a><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></div>
+</div></footer>

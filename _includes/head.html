@@ -11,6 +11,10 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="assets/css/main.css">
+{% if page.layout == "profile" %}
+<link rel="stylesheet" href="{{ '/assets/css/profile.css' | relative_url }}">
+{% else %}
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{% endif %}
 
 <meta http-equiv="cleartype" content="on">

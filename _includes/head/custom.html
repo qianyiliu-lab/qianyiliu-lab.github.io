@@ -6,7 +6,7 @@
 
 <meta name="msapplication-TileColor" content="#214f83">
 <meta name="theme-color" content="#f5f8fc">
-<link rel="stylesheet" href="assets/css/academicons.css"/>
+{% unless page.layout == 'profile' %}<link rel="stylesheet" href="{{ '/assets/css/academicons.css' | relative_url }}">{% endunless %}
 {% if page.math %}
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
 <script type="text/x-mathjax-config">

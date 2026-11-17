@@ -10,13 +10,17 @@ The site is based on the AcadHomepage template and remains a static Jekyll site 
 
 - `_config.yml` - site metadata, author profile, profile links, and GitHub Pages settings.
 - `_pages/about.md` - homepage sections and Liquid rendering logic.
+- `_layouts/profile.html` and `assets/css/profile.scss` - responsive homepage navigation and editorial layout.
+- `_includes/bibliography.html` - publication entries and citation placeholders.
 - `_data/research.yml` - research theme blocks.
 - `_data/publications.yml` - selected and full publication entries.
-- `_data/projects.yml` - project cards and TODO links.
+- `_data/projects.yml` - project entries, methods, outputs, and resource links.
 - `_data/news.yml` - awards and news items.
 - `_data/teaching.yml` - teaching assistant entries.
 - `images/qianyi-liu-profile.jpg` - public profile photo.
 - `assets/pdf/Qianyi_Liu_CV.pdf` - downloadable CV.
+
+The cover uses a Landsat 8 observation of the Pearl River estuary from March 27, 2016. The two local WebP sizes are derivatives of [Bridging the Pearl River Delta](https://science.nasa.gov/earth/earth-observatory/bridging-the-pearl-river-delta-88033/) by Joshua Stevens and Jesse Allen, NASA Earth Observatory, using Landsat data from the U.S. Geological Survey. The pointer trace is optional decoration and is disabled for touch input and reduced motion.
 
 ## Local Preview
 

@@ -90,6 +90,7 @@ exclude:
   - node_modules
   - package.json
   - tmp
+  - output
   - vendor
   - .acad_template_unzip
   - acad_template.zip

@@ -1,0 +1,16 @@
+{% for paper in include.records %}
+<article class="paper">
+  <div><p class="journal">{% if paper.status == 'Under Review' %}Submitted to {% endif %}{{ paper.venue }} &middot; {{ paper.year }}</p>
+    <h4>{% if paper.doi %}<a href="https://doi.org/{{ paper.doi }}">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h4>
+    <div class="authors">{{ paper.authors | markdownify }}</div>
+    <div class="paper-links">
+      {% if paper.doi %}<a href="https://doi.org/{{ paper.doi }}">DOI</a>{% endif %}
+      {% if paper.pdf %}<a href="{{ paper.pdf }}">PDF</a>{% endif %}
+      {% if paper.code %}<a href="{{ paper.code }}">Code</a>{% endif %}
+      {% if paper.data %}<a href="{{ paper.data }}">Data</a>{% endif %}
+      {% if paper.bibtex %}<a href="{{ paper.bibtex }}">BibTeX</a>{% endif %}
+      {% if paper.scholar_id %}<span data-scholar-id="{{ paper.scholar_id }}">Citations unavailable</span>{% endif %}
+    </div>
+  </div>
+</article>
+{% endfor %}
