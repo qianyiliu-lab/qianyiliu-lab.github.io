@@ -1,4 +1,19 @@
-<script src="assets/js/main.min.js"></script>
+{% if page.academic_home %}
+<script>
+  const menu = document.querySelector('.small-navigation');
+  document.addEventListener('click', function (event) {
+    if (menu.open && (!menu.contains(event.target) || event.target.closest('a'))) menu.open = false;
+  });
+  menu.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      menu.open = false;
+      menu.querySelector('summary').focus();
+    }
+  });
+</script>
+{% else %}
+<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+{% endif %}
 
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
