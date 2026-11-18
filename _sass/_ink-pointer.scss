@@ -5,14 +5,14 @@
 @media screen and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
   .survey-toggle:not([hidden]) {
     display: inline-flex; align-items: center; gap: 7px; flex: none;
-    margin-inline-end: auto; padding: 5px 2px; min-height: 32px;
-    border: 0; background: transparent; color: var(--secondary); cursor: pointer;
+    padding: 5px 3px; min-height: 40px;
+    border: 0; background: transparent; color: #e2edf3; cursor: pointer;
     font: 500 12px/1.25 var(--sans);
-    &:hover { color: var(--ink); }
-    &:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    &:hover { color: white; text-decoration: underline; }
+    &:focus-visible { outline: 2px solid white; outline-offset: 2px; }
     span { width: 24px; height: 14px; padding: 2px; border-radius: 7px; background: #69747b; }
     span::before { content: ""; display: block; width: 10px; height: 10px; background: white; border-radius: 50%; }
-    &[aria-pressed="true"] span { background: #266a8b; }
+    &[aria-pressed="true"] span { background: #4b89a9; }
     &[aria-pressed="true"] span::before { transform: translateX(10px); }
   }
 

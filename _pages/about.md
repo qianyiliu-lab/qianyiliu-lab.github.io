@@ -20,12 +20,13 @@ redirect_from:
     <p class="role">{{ author.bio }}</p>
     <p class="fields">Geohazards, geospatial AI, remote sensing, and machine learning</p>
     <div class="cover-actions">
+      <a class="cover-papers" href="#publications">View papers {% include academic-icon.html name="arrow-right" %}</a>
       <button class="ask-launch" type="button" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %}<span>Ask about my research</span></button>
-      <a class="cover-cv" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
     </div>
   </div>
   <div class="view-strip"><div class="measure view-row">
     <div class="view-site"><strong>Barry Arm, Alaska</strong><span data-coordinate title="Approximate NAD83 map coordinate">61.116&deg; N &nbsp;148.208&deg; W</span></div>
+    <button type="button" class="survey-toggle" aria-pressed="false" hidden><span aria-hidden="true"></span>Survey lens</button>
     <div class="view-switch" role="group" aria-label="Landscape view" hidden>
       <button type="button" data-view="satellite" aria-pressed="true">Satellite</button>
       <button type="button" data-view="terrain" aria-pressed="false">Terrain</button>
@@ -75,7 +76,7 @@ redirect_from:
   <details class="review-list"><summary>Manuscripts under review <span>({{ review.size }})</span></summary>{% include bibliography.html records=review %}</details>
   {% endif %}
   </div>
-  <dialog class="figure-viewer" aria-labelledby="figure-heading">
+  <dialog class="figure-viewer" id="publication-figure" aria-labelledby="figure-heading">
     <div class="figure-tools">
       <div><p class="journal" data-figure-venue></p><h3 id="figure-heading">Publication figure</h3></div>
       <button type="button" data-zoom title="Show actual size" aria-label="Show actual size" aria-pressed="false">1:1</button>
@@ -89,14 +90,17 @@ redirect_from:
 <section class="band" id="research"><div class="measure">
   <div class="section-heading"><h2>Research directions</h2></div>
   <div class="research-grid">{% for theme in site.data.research %}
-    <article{% if theme.anchor %} id="{{ theme.anchor | escape }}"{% endif %}><h3>{{ theme.title }}</h3><p>{{ theme.description }}</p></article>
+    {% assign related_project = site.data.projects | where: 'id', theme.project_id | first %}
+    <article{% if theme.anchor %} id="{{ theme.anchor | escape }}"{% endif %}><h3>{{ theme.title }}</h3><p>{{ theme.description }}</p>
+      {% if theme.project_id and related_project %}<a class="theme-project" href="#project-{{ related_project.id | escape }}">View project<span class="sr-only">: {{ related_project.title | escape }}</span> {% include academic-icon.html name="arrow-right" %}</a>{% endif %}
+    </article>
   {% endfor %}</div>
 </div></section>
 
 <section class="band" id="projects"><div class="measure">
   <div class="section-heading"><h2>Projects</h2></div>
   {% for project in site.data.projects %}
-  <article class="project"><p class="meta">{{ project.status }}</p><div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
+  <article class="project"{% if project.id %} id="project-{{ project.id | escape }}"{% endif %}><p class="meta">{{ project.status }}</p><div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
     <details><summary>Methods and outputs</summary><p><strong>Methods</strong> &middot; {{ project.methods }}</p><p><strong>Outputs</strong> &middot; {{ project.outputs }}</p></details>
     {% for link in project.links %}<a class="project-resource" href="{{ link.url }}">{% if link.label == 'DOI' %}Read the paper{% else %}{{ link.label }}{% endif %}</a>{% endfor %}
   </div></article>{% endfor %}
@@ -117,5 +121,7 @@ redirect_from:
 <footer id="contact"><div class="measure foot">
   <div><h2>Contact</h2><a class="email" href="mailto:{{ author.email }}">{{ author.email }}</a>
     <p>Department of Civil Engineering, {{ author.employer }}<br>{{ author.location }}</p></div>
-  {% include profile-links.html scholar="true" label="Contact and academic profiles" %}
+  <div class="foot-tools">{% include profile-links.html scholar="true" label="Contact and academic profiles" %}
+    <a class="to-top" href="#about-me">Back to top {% include academic-icon.html name="arrow-up" %}</a>
+  </div>
 </div></footer>

@@ -37,10 +37,12 @@
   {% assign license_url = figure.license_url | strip %}
   <figure class="paper-figure">
     <a class="paper-original" href="{{ original | escape }}">
-      <img src="{{ figure.preview | default: src | relative_url | escape }}" alt="{{ figure.alt | strip | default: caption | default: paper.title | escape }}"{% if figure.width and figure.height %} width="{{ figure.width | escape }}" height="{{ figure.height | escape }}"{% endif %} loading="lazy" decoding="async">
+      <span class="paper-figure-plate">
+        <img src="{{ figure.preview | default: src | relative_url | escape }}" alt="{{ figure.alt | strip | default: caption | default: paper.title | escape }}"{% if figure.width and figure.height %} width="{{ figure.width | escape }}" height="{{ figure.height | escape }}"{% endif %} loading="lazy" decoding="async">
+      </span>
       <span class="paper-figure-bar">
         {% if label != empty %}<strong>{{ label | escape }}</strong>{% endif %}
-        <span class="paper-original-label">Open original</span>
+        <span class="paper-original-label">Open original {% include academic-icon.html name="arrow-right" %}</span>
       </span>
     </a>
     {% if caption != empty or source != empty or credit != empty or license != empty or license_url != empty %}

@@ -9,10 +9,10 @@
     <header class="mast">
       <nav class="measure nav-row" aria-label="Main navigation">
         <a class="wordmark" href="#about-me">{{ site.author.name }}</a>
-        <button type="button" class="survey-toggle" aria-pressed="false" hidden><span aria-hidden="true"></span>Survey lens</button>
-        {% capture links %}<ul>{% for link in site.data.navigation.main %}{% unless link.url == "/#about-me" %}<li><a href="{{ link.url | remove_first: '/' }}">{{ link.title | escape }}</a></li>{% endunless %}{% endfor %}</ul>{% endcapture %}
+        {% capture links %}<ul>{% for link in site.data.navigation.main %}{% unless link.url == "/#about-me" %}<li{% if link.url == "/#cv" %} class="cv-section-link"{% endif %}><a href="{{ link.url | remove_first: '/' }}">{% if link.url == "/#cv" %}CV summary{% else %}{{ link.title | escape }}{% endif %}</a></li>{% endunless %}{% endfor %}</ul>{% endcapture %}
         <div class="desktop-nav">{{ links }}</div>
-        <details class="mobile-nav"><summary>{% include academic-icon.html name="menu" %} Menu</summary>{{ links }}</details>
+        <a class="nav-cv" href="{{ site.author.cv | relative_url }}" download aria-label="Download CV (PDF)" title="Download CV (PDF)">{% include academic-icon.html name="download" %}<span>CV</span></a>
+        <details class="mobile-nav"><summary>{% include academic-icon.html name="menu" %}<span>Menu</span></summary>{{ links }}</details>
       </nav>
     </header>
     <main id="main">{{ content }}</main>
@@ -23,20 +23,9 @@
     </div>
     <span class="survey-locator" aria-hidden="true" hidden></span>
     <script defer src="{{ '/assets/js/landscape-view.js' | relative_url }}?v=layers1"></script>
-    <script defer src="{{ '/assets/js/publication-viewer.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/publication-viewer.js' | relative_url }}?v=fig2"></script>
     <script defer src="{{ '/assets/js/survey-pointer.js' | relative_url }}?v=lens3"></script>
-    <script>
-      const menu = document.querySelector('.mobile-nav');
-      document.addEventListener('click', event => {
-        if (menu.open && (!menu.contains(event.target) || event.target.closest('a'))) menu.open = false;
-      });
-      menu.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          menu.open = false;
-          menu.querySelector('summary').focus();
-        }
-      });
-    </script>
+    <script defer src="{{ '/assets/js/section-nav.js' | relative_url }}"></script>
     {% include analytics.html %}
     {% include fetch_google_scholar_stats.html %}
   </body>

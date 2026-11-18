@@ -1,4 +1,5 @@
 - title: "Explainable Machine Learning for Tropical Cyclone-Induced Flood Susceptibility"
+  id: "cyclone-flooding"
   status: "Published"
   image_path: "images/projects/flood-susceptibility-map.jpg"
   summary: "This project integrates hydrodynamic modeling, remote sensing-derived predictors, and ensemble machine learning to assess tropical cyclone-induced flood susceptibility. It uses interpretable machine learning methods to identify key flood-driving factors and produce spatially explicit susceptibility maps."
@@ -10,6 +11,7 @@
   todo: "TODO: Add PDF, code, data, and representative figure files when available."
 
 - title: "Spatially Robust Landslide Susceptibility Mapping"
+  id: "landslide-mapping"
   status: "Under review"
   image_path: "images/projects/landslide-susceptibility-map.jpg"
   summary: "This project develops spatially robust landslide susceptibility models using landslide inventories, terrain and environmental conditioning factors, PU learning-based negative sampling, spatial cross-validation, and model interpretation methods."
@@ -19,6 +21,7 @@
   todo: "TODO: Add paper, poster, code, and representative figure links when available; add the publication link after acceptance."
 
 - title: "Self-Supervised Learning for Small-Sample Landslide Susceptibility Mapping"
+  id: "sparse-inventories"
   status: "Ongoing / Under preparation"
   image_path: "images/projects/ssl-lsm-workflow.jpg"
   summary: "This project investigates whether self-supervised representation learning can improve small-sample landslide susceptibility mapping. It uses dual-view geospatial patches, ResNet-style CNNs, masked reconstruction, contrastive learning, and few-shot fine-tuning for spatial transfer evaluation."

@@ -1,4 +1,5 @@
 - title: "Mapping landslide susceptibility"
+  project_id: "landslide-mapping"
   image_path: "images/projects/landslide-susceptibility-map.jpg"
   description: "Which terrain and environmental factors best explain where landslides occur? I use landslide inventories to model these relationships and spatial cross-validation to test whether they hold beyond the training area."
   keywords:
@@ -11,6 +12,7 @@
   todo: "TODO: Add a representative landslide susceptibility map or workflow figure."
 
 - title: "Flooding in coastal deltas"
+  project_id: "cyclone-flooding"
   image_path: "images/projects/flood-susceptibility-map.jpg"
   description: "I combine hydrodynamic models and remotely sensed observations to study tropical cyclone flooding. Explainable models help me identify which environmental conditions matter most across a delta."
   keywords:
@@ -23,6 +25,7 @@
   todo: "TODO: Add a flood susceptibility map or model interpretation figure."
 
 - title: "Learning from sparse inventories"
+  project_id: "sparse-inventories"
   anchor: "landslide-transfer"
   image_path: "images/projects/ssl-lsm-workflow.jpg"
   description: "Can unlabeled terrain data help map landslides in places with few recorded events? I test whether models trained on geospatial patches can transfer what they learn to a new area."

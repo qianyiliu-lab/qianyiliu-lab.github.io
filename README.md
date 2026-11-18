@@ -43,7 +43,9 @@ The hero's "Ask about my research" button opens the research Q&A panel. Its sugg
 
 Published entries with a DOI also have an **Ask about this paper** button. Opening a record, following its DOI, and copying its citation do not use model credit. Only an explicitly submitted question sends the selected title and DOI as context; switching papers starts a fresh conversation. The assistant uses the public homepage record, not the full text of the article.
 
-With Playwright and Edge installed, run `node _tests/research-qa.cjs`, `node _tests/landscape.cjs` and `node _tests/publication-figures.cjs` against the local preview (port 4000 by default). These check the Q&A with mocked requests, the registered layers and playback controls, and the publication images and originals with JavaScript disabled.
+The sticky header downloads the CV directly; the cover links to the publication list and Q&A. The survey lens lives with the landscape controls. Each research theme can link to a project by matching its `project_id` to an `id` in `_data/projects.yml`.
+
+With Playwright and Edge installed, run `node _tests/section-nav.cjs`, `node _tests/profile.cjs`, `node _tests/research-qa.cjs`, `node _tests/landscape.cjs` and `node _tests/publication-figures.cjs` against the local preview (port 4000 by default). They cover header navigation and downloads, the biography, mocked Q&A, landscape playback, figure selection and zoom, and no-script fallbacks.
 
 Install Ruby and Bundler, then run:
 
