@@ -24,7 +24,9 @@ The cover is [Panorama view of Barry Arm Landslide](https://www.usgs.gov/media/i
 
 ## Local Preview
 
-The biography opens a research Q&A panel. Its suggested questions use the homepage's public content and never call the API. Free-form answers require the separately deployed Cloudflare Worker in `research-assistant/` and an explicitly enabled, still-funded grant. Only its public HTTPS origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or personal billing information in this repository. The backend directory is excluded from the Pages build.
+The hero's "Ask about my research" button opens the research Q&A panel. Its suggested questions use the homepage's public content and never call the API. Free-form answers require the separately deployed Cloudflare Worker in `research-assistant/` and an explicitly enabled, still-funded grant. Only its public HTTPS origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or personal billing information in this repository. The backend directory is excluded from the Pages build.
+
+To exercise the interface without spending API credit, run `node _tests/research-qa.cjs http://127.0.0.1:4000/` with Playwright and Edge installed. The test intercepts Worker requests and covers both live-answer and guide-only layouts.
 
 Install Ruby and Bundler, then run:
 

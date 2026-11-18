@@ -19,8 +19,10 @@ redirect_from:
     <h1>{{ author.name }}</h1>
     <p class="role">{{ author.bio }}</p>
     <p class="fields">Geohazards, geospatial AI, remote sensing, and machine learning</p>
-    <div class="cover-actions"><a class="cv-button" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
-      <a href="{{ author.googlescholar | escape }}">Google Scholar {% include academic-icon.html name="external" %}</a></div>
+    <div class="cover-actions">
+      <button class="ask-launch" type="button" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %}<span>Ask about my research</span></button>
+      <a class="cover-cv" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
+    </div>
   </div>
   <a class="image-credit" href="https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide" title="Original panorama by Tony Fischbach, U.S. Geological Survey">Barry Arm landslide, Alaska &middot; Tony Fischbach / USGS</a>
 </header>
@@ -31,8 +33,7 @@ redirect_from:
     <div><h2 id="profile-heading">About me</h2>
       <p>I study where landslides and floods are likely to occur, and which environmental factors explain their distribution. At Stony Brook University, I combine remote sensing, GIS, and hydrodynamic modeling with machine learning to map susceptibility and test how well those maps hold up in new places.</p>
       <div class="bio-actions">
-        {% include profile-links.html label="Email and academic profiles" %}
-        <button class="ask-launch" type="button" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %} Research Q&amp;A</button>
+        {% include profile-links.html scholar="true" label="Email and academic profiles" %}
       </div>
     </div>
   </section>

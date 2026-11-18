@@ -1,24 +1,26 @@
 <dialog id="research-qa" class="research-qa" aria-labelledby="qa-title" data-origin="{{ site.research_assistant_origin | escape }}">
-  <div class="qa-head">
-    <div><p class="qa-byline">{{ site.author.name }}</p><h2 id="qa-title">Research Q&amp;A</h2></div>
+  <header class="qa-head">
+    <div class="qa-byline">{{ site.author.name }}<span aria-hidden="true">&middot;</span><span class="qa-mode" aria-live="polite">Homepage guide</span></div>
     <button class="qa-close" type="button" aria-label="Close research Q&amp;A" title="Close" autofocus>{% include academic-icon.html name="close" %}</button>
-  </div>
-  <div class="qa-body">
-    <p class="qa-mode" aria-live="polite">Homepage guide</p>
-    <div class="qa-transcript" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
-    <div class="qa-options" role="group" aria-label="Questions answered by the homepage">
-      <button type="button" data-topic="research">What hazards does Qianyi study?</button>
-      <button type="button" data-topic="paper">Which paper should I read first?</button>
-      <button type="button" data-topic="projects">Which projects are ongoing?</button>
-      <button type="button" data-topic="contact">How can I get in touch?</button>
-    </div>
-  </div>
+    <h2 id="qa-title">Research Q&amp;A</h2>
+  </header>
   <form class="qa-form" hidden>
-    <label for="qa-question">Ask a research question</label>
-    <div class="qa-compose"><textarea id="qa-question" rows="2" maxlength="480" placeholder="Ask about a paper, method, or project"></textarea>
-    <button class="qa-send" type="submit" aria-label="Send question" title="Send question" disabled>{% include academic-icon.html name="send" %}</button></div>
-    <small>Questions and recent turns go to OpenAI and may be retained for abuse monitoring. Please leave out personal information.</small>
+    <label class="sr-only" for="qa-question">Ask a research question</label>
+    <div class="qa-compose"><textarea id="qa-question" rows="2" maxlength="480" enterkeyhint="send" placeholder="Ask about a paper, method, or project&hellip;" aria-describedby="qa-privacy"></textarea>
+    <button class="qa-send" type="submit" aria-label="Send question" title="Send question" disabled>{% include academic-icon.html name="arrow-up" %}</button></div>
+    <small id="qa-privacy">Messages go to OpenAI and may be retained for abuse monitoring. Please omit personal information.</small>
   </form>
+  <div class="qa-body">
+    <details class="qa-suggestions" open>
+      <summary>Suggested questions {% include academic-icon.html name="arrow-right" %}</summary>
+      <div class="qa-options" role="group" aria-label="Questions answered by the homepage">
+        {% assign topics = 'research|paper|projects|contact' | split: '|' %}
+        {% assign questions = 'What hazards does Qianyi study?|Which paper should I read first?|Which projects are ongoing?|How can I get in touch?' | split: '|' %}
+        {% for topic in topics %}<button type="button" data-topic="{{ topic }}"><span class="qa-number" aria-hidden="true">0{{ forloop.index }}</span><span class="qa-prompt">{{ questions[forloop.index0] }}</span>{% include academic-icon.html name="arrow-right" %}</button>{% endfor %}
+      </div>
+    </details>
+    <div class="qa-transcript" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text"></div>
+  </div>
   <template data-answer="research"><p>Qianyi studies where landslides and floods are likely to occur. His research uses remote sensing, terrain data and machine learning to identify the environmental factors behind those patterns, and tests how well the resulting maps transfer to new areas.</p><a href="#research">Research directions</a></template>
   {% assign first_paper = site.data.publications | where: 'selected', true | first %}
   <template data-answer="paper">{% if first_paper %}<p>Start with <em>{{ first_paper.title | escape }}</em>, published in <em>{{ first_paper.venue | escape }}</em> in {{ first_paper.year }}.</p>{% if first_paper.doi %}<a href="https://doi.org/{{ first_paper.doi | escape }}">Read the paper</a>{% endif %}{% endif %}<a href="#publications">Publications</a></template>

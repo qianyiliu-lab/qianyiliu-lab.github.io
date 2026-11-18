@@ -4,7 +4,10 @@
   if (!dialog || !launcher || typeof dialog.showModal !== 'function') return;
   const find = s => dialog.querySelector(s);
   const mode = find('.qa-mode'), log = find('.qa-transcript'), form = find('.qa-form');
-  const question = find('textarea'), send = find('.qa-send');
+  const suggestions = find('.qa-suggestions');
+  const body = find('.qa-body');
+  const question = find('textarea'), send = find('.qa-send'), close = find('.qa-close');
+  const desktopInput = window.matchMedia('(min-width: 601px) and (hover: hover) and (pointer: fine)');
   const topics = { research: 'Research directions', publications: 'Publications', projects: 'Projects',
     'awards-news': 'News and awards', teaching: 'Teaching', cv: 'Curriculum vitae', contact: 'Contact' };
   let origin, request, busy = false, history = [];
@@ -22,7 +25,18 @@
     while (log.childElementCount > 12) log.firstElementChild.remove();
     return el;
   }
-  function reveal(el) { el.scrollIntoView({block:'nearest'}); }
+  function reveal(el) {
+    const viewport = body.getBoundingClientRect(), box = el.getBoundingClientRect();
+    if (box.height > body.clientHeight || box.top < viewport.top) body.scrollTop += box.top - viewport.top;
+    else if (box.bottom > viewport.bottom) body.scrollTop += box.bottom - viewport.bottom;
+  }
+  function beginConversation() {
+    suggestions.open = false;
+    if (body.nextElementSibling === form) return;
+    const focus = form.contains(document.activeElement) ? document.activeElement : null;
+    body.after(form);
+    if (focus) focus.focus({preventScroll:true});
+  }
   function controls() { send.disabled = busy || !question.value.trim(); }
   function guide(message = 'Homepage guide') { mode.textContent = message; form.hidden = true; }
   async function checkService() {
@@ -33,16 +47,20 @@
       const res = await fetch(origin + '/status', {signal:op.signal,credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store'});
       if (res.ok && (await res.json()).available === true && dialog.open && op === request) {
         mode.textContent = 'GPT research assistant'; form.hidden = false; controls();
+        if (desktopInput.matches && document.activeElement === close && !log.childElementCount) {
+          question.focus({preventScroll:true});
+        }
       }
     } catch (_) { /* Source questions stay available without a service. */ }
     finally { clearTimeout(timer); if (request === op) request = null; }
   }
   launcher.hidden = false;
-  launcher.addEventListener('click', () => { guide(); dialog.showModal(); checkService(); });
-  find('.qa-close').addEventListener('click', () => dialog.close());
+  launcher.addEventListener('click', () => { guide(); suggestions.open = true; dialog.showModal(); checkService(); });
+  close.addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     request?.abort(); request = null; busy = false; history = [];
     log.replaceChildren(); question.value = ''; guide(); controls();
+    body.before(form); body.scrollTop = 0;
   });
   dialog.addEventListener('click', event => {
     if (event.target === dialog) {
@@ -53,7 +71,9 @@
     if (option) {
       const template = find('template[data-answer="' + option.dataset.topic + '"]');
       if (!template) return;
-      turn(true, option.textContent);
+      beginConversation();
+      suggestions.querySelector('summary').focus({preventScroll:true});
+      turn(true, option.querySelector('.qa-prompt').textContent);
       const answer = turn(false);
       answer.append(template.content.cloneNode(true)); reveal(answer);
     }
@@ -76,6 +96,7 @@
     e.preventDefault();
     const text = question.value.trim();
     if (!dialog.open || form.hidden || busy || !origin || !text || text.length > 480) return;
+    beginConversation();
     busy = true; question.value = ''; controls();
     turn(true, text);
     const response = turn(false, 'Reading the research profile...'); reveal(response);
@@ -90,15 +111,24 @@
       if (typeof data.answer !== 'string' || !data.answer.trim()) throw new Error('empty');
       if (op !== request || !dialog.open) return;
       response.firstChild.textContent = data.answer;
+      const sources = document.createElement('div'); sources.className = 'qa-sources';
       for (const key of new Set(Array.isArray(data.sources) ? data.sources : [])) {
         if (!Object.hasOwn(topics,key)) continue;
-        const a = document.createElement('a'); a.href = '#' + key; a.textContent = topics[key]; response.append(a);
+        const a = document.createElement('a'); a.href = '#' + key; a.textContent = topics[key]; sources.append(a);
+      }
+      if (sources.childElementCount) {
+        const label = document.createElement('span'); label.textContent = 'Sources';
+        sources.prepend(label); response.append(sources);
       }
       history = history.concat({role:'user',content:text},{role:'assistant',content:data.answer.slice(0,480)}).slice(-4);
     } catch (err) {
       if (op !== request || !dialog.open) return;
-      response.firstChild.textContent = 'No AI answer is available. The questions below link to the research profile.';
-      if (err.message === 'unavailable') guide('Homepage guide');
+      response.firstChild.textContent = 'No AI answer is available right now. You can still use the suggested questions.';
+      if (err.message === 'unavailable') {
+        guide();
+        suggestions.open = true;
+        suggestions.querySelector('summary').focus({preventScroll:true});
+      }
     } finally {
       clearTimeout(timer);
       if (request === op) { request = null; busy = false; controls(); reveal(response); }
