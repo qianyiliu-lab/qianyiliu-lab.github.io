@@ -20,15 +20,22 @@ The site is based on the AcadHomepage template and remains a static Jekyll site 
 - `images/qianyi-liu-profile.jpg` - public profile photo.
 - `assets/pdf/Qianyi_Liu_CV.pdf` - downloadable CV.
 
-The cover is [Panorama view of Barry Arm Landslide](https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide), a public-domain field photograph by Tony Fischbach of the U.S. Geological Survey. It illustrates a geohazard setting, not an author field site. The 9440 x 2720 original is served as responsive WebP derivatives, with a mountain-centered crop on narrow screens. The optional desktop lens uses a higher-resolution derivative of the same photograph.
+## Cover Imagery
 
-The optional **Terrain** view is a north-up shaded relief of the same fjord, not a hazard prediction or a georeferenced overlay of the panorama. It is built from the [USGS 3DEP historical 1 arc-second DEM, tile n62w149](https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1/TIFF/historical/n62w149/USGS_1_n62w149_20171229.tif), resampled onto a local 10 m grid for display with 100 m contours. The image, approximate NAD83 coordinates and 1 km scale are served locally. The photo caption locates the [Barry Arm landslide](https://www.usgs.gov/data/select-model-results-simulations-hypothetical-rapid-failures-landslides-barry-arm-prince), not the camera. To regenerate the raster and its bounds from the downloaded tile, run:
+The cover compares two north-up views of Barry Arm, Alaska. **Satellite** contains modified Copernicus Sentinel data (2024): the [19 July Sentinel-2B true-colour scene](https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_6VVN_20240719_0_L2A) reprojected and compressed for the web. **Terrain** uses the [USGS 3DEP historical 1 arc-second elevation tile n62w149](https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1/TIFF/historical/n62w149/USGS_1_n62w149_20171229.tif) with 100 m contours. Both use the same 1920 x 1080 grid, approximate NAD83 coordinates, scale and responsive crop. These are different measurements and acquisition dates, not a time series, a hazard prediction or a claim of fieldwork at this site.
+
+The views dissolve on a seven-second cycle while visible. Choosing a layer pauses playback. Reduced motion and data-saver preferences disable automatic playback initially; without JavaScript the satellite view and attribution remain. All images are hosted locally; no map API or visitor key is needed. To rebuild:
 
 ```bash
 python _tools/render-barry-relief.py USGS_1_n62w149_20171229.tif images/barry-arm-relief.webp
+python _tools/render-barry-satellite.py
 ```
 
-Regeneration requires NumPy and Pillow; neither is required to build or serve the site.
+Both scripts require NumPy and Pillow. The satellite script also uses rasterio and reads only the required area of the public cloud-optimized GeoTIFF; a local TCI file can be passed as its argument. No geospatial packages are required to build or serve the homepage.
+
+## Publication Figures
+
+In `_data/publications.yml`, a published record can have a short `takeaway` and a `figure` with a local `src`, optional lighter `preview`, native width/height, label, alt text, caption, publisher source, author credit and license link. Keep original files in `images/publications/`. Never use a placeholder or post an under-review figure. The flood study shows its stacking workflow unchanged ([publisher figure](https://ars.els-cdn.com/content/image/1-s2.0-S167498712600109X-gr9_lrg.jpg), CC BY-NC-ND 4.0); the fire-frequency paper shows [PLOS Fig. 8](https://journals.plos.org/plosone/article/figure?id=10.1371%2Fjournal.pone.0255857.g008) unchanged under CC BY 4.0. These figures retain their paper-specific licenses.
 
 ## Local Preview
 
@@ -36,7 +43,7 @@ The hero's "Ask about my research" button opens the research Q&A panel. Its sugg
 
 Published entries with a DOI also have an **Ask about this paper** button. Opening a record, following its DOI, and copying its citation do not use model credit. Only an explicitly submitted question sends the selected title and DOI as context; switching papers starts a fresh conversation. The assistant uses the public homepage record, not the full text of the article.
 
-With Playwright and Edge installed, run `node _tests/research-qa.cjs http://127.0.0.1:4000/` and `node _tests/landscape.cjs http://127.0.0.1:4000/`. The first intercepts Worker requests and spends no API credit; the second checks the map, magnifier and photo fallback across screen sizes.
+With Playwright and Edge installed, run `node _tests/research-qa.cjs`, `node _tests/landscape.cjs` and `node _tests/publication-figures.cjs` against the local preview (port 4000 by default). These check the Q&A with mocked requests, the registered layers and playback controls, and the publication images and originals with JavaScript disabled.
 
 Install Ruby and Bundler, then run:
 

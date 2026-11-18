@@ -9,10 +9,9 @@ redirect_from:
 ---
 
 {% assign author = site.author %}
-<header id="about-me" class="estuary">
+<header id="about-me" class="estuary" data-view="satellite">
   <picture>
-    <source media="(max-width: 700px)" srcset="{{ '/images/barry-arm-mobile-720.webp' | relative_url }} 720w, {{ '/images/barry-arm-mobile-1600.webp' | relative_url }} 1600w" sizes="(max-width: 480px) 480px, 100vw" data-lens-src="{{ '/images/barry-arm-mobile-1600.webp' | relative_url }}">
-    <img src="{{ '/images/barry-arm-1440.webp' | relative_url }}" srcset="{{ '/images/barry-arm-1440.webp' | relative_url }} 1440w, {{ '/images/barry-arm-2560.webp' | relative_url }} 2560w, {{ '/images/barry-arm-3840.webp' | relative_url }} 3840w, {{ '/images/barry-arm-detail.webp' | relative_url }} 6144w" sizes="(max-width: 1400px) 1400px, 100vw" data-lens-src="{{ '/images/barry-arm-detail.webp' | relative_url }}" width="1440" height="415" fetchpriority="high" alt="Steep slopes and glacier ice above the water at the Barry Arm landslide in Alaska.">
+    <img src="{{ '/images/barry-arm-satellite.webp' | relative_url }}" srcset="{{ '/images/barry-arm-satellite-960.webp' | relative_url }} 960w, {{ '/images/barry-arm-satellite.webp' | relative_url }} 1920w" sizes="(max-width: 700px) 900px, 100vw" data-lens-src="{{ '/images/barry-arm-satellite.webp' | relative_url }}" width="1920" height="1080" fetchpriority="high" alt="Satellite view of Barry Arm, Alaska: glacier ice and snow-covered ridges flank a narrow fjord.">
   </picture>
   <img class="relief-image" width="1920" height="1080" data-src="{{ '/images/barry-arm-relief.webp' | relative_url }}" data-bounds='{{ site.data.barry_arm_terrain | jsonify }}' alt="North-up shaded relief of Barry Arm, Alaska, with elevation contours at 100 metre intervals." hidden>
   <div class="measure cover-inner">
@@ -26,13 +25,14 @@ redirect_from:
     </div>
   </div>
   <div class="view-strip"><div class="measure view-row">
-    <div class="view-site"><strong>Barry Arm, Alaska</strong><span data-coordinate title="Approximate location of the landslide toe">61.10&deg; N &nbsp;148.17&deg; W</span></div>
+    <div class="view-site"><strong>Barry Arm, Alaska</strong><span data-coordinate title="Approximate NAD83 map coordinate">61.116&deg; N &nbsp;148.208&deg; W</span></div>
     <div class="view-switch" role="group" aria-label="Landscape view" hidden>
-      <button type="button" data-view="photo" aria-pressed="true">Photo</button>
+      <button type="button" data-view="satellite" aria-pressed="true">Satellite</button>
       <button type="button" data-view="terrain" aria-pressed="false">Terrain</button>
+      <button type="button" class="view-play" aria-label="Play layer comparison" title="Play layer comparison"><span data-play-icon>{% include academic-icon.html name="play" %}</span><span data-pause-icon hidden>{% include academic-icon.html name="pause" %}</span></button>
     </div>
     <span class="view-source">
-      <a data-credit="photo" href="https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide">Tony Fischbach / USGS</a>
+      <a data-credit="satellite" href="https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_6VVN_20240719_0_L2A" title="Contains modified Copernicus Sentinel data (2024)">Copernicus Sentinel-2 &middot; 19 Jul 2024</a>
       <a data-credit="terrain" href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services" hidden>USGS 3DEP &middot; 100 m contours</a>
     </span>
     <span class="view-scale" hidden role="img" aria-label="North up; approximate 1 kilometre scale"><span aria-hidden="true">N &uarr;</span><span class="scale-bar" aria-hidden="true">1 km</span></span>
@@ -72,6 +72,15 @@ redirect_from:
   <details class="review-list"><summary>Manuscripts under review <span>({{ review.size }})</span></summary>{% include bibliography.html records=review %}</details>
   {% endif %}
   </div>
+  <dialog class="figure-viewer" aria-labelledby="figure-heading">
+    <div class="figure-tools">
+      <div><p class="journal" data-figure-venue></p><h3 id="figure-heading">Publication figure</h3></div>
+      <button type="button" data-zoom title="Show actual size" aria-label="Show actual size" aria-pressed="false">1:1</button>
+      <button type="button" data-close title="Close figure" aria-label="Close figure" autofocus>{% include academic-icon.html name="close" %}</button>
+    </div>
+    <div class="figure-canvas" tabindex="0" role="region" aria-label="Figure detail"><img alt=""></div>
+    <div class="figure-notes"><p data-figure-caption></p><a data-figure-file>Original image</a></div>
+  </dialog>
 </div></section>
 
 <section class="band" id="research"><div class="measure">

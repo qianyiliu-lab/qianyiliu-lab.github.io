@@ -4,6 +4,21 @@
   venue: "Geoscience Frontiers"
   year: 2026
   doi: "10.1016/j.gsf.2026.102355"
+  takeaway: "We used flood simulations from 78 tropical cyclones to train an ensemble model and mapped where flooding is more likely across the Pearl River Delta."
+  workflow: "https://ars.els-cdn.com/content/image/1-s2.0-S167498712600109X-gr6.jpg"
+  # Both files are unmodified publisher renditions. The full image is loaded only on request.
+  figure:
+    src: "/images/publications/gsf-102355-model-workflow.jpg"
+    preview: "/images/publications/gsf-102355-model-workflow-preview.jpg"
+    label: "Model workflow"
+    caption: "Five base learners supply predictions to a second model. The diagram traces the training and evaluation steps."
+    alt: "Flowchart from a 70/30 train-test split through five-fold cross-validation, base-learner training, meta-features, and final evaluation."
+    source: "https://ars.els-cdn.com/content/image/1-s2.0-S167498712600109X-gr9_lrg.jpg"
+    credit: "Liu et al., Geoscience Frontiers (2026)."
+    license: "CC BY-NC-ND 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+    width: 3549
+    height: 2356
   scholar_id: "UmPI1h0AAAAJ:9yKSN-GCB0IC"
   pdf:
   code:
@@ -18,10 +33,25 @@
   venue: "PLOS ONE"
   year: 2021
   doi: "10.1371/journal.pone.0255857"
+  takeaway: "After two outlying months were adjusted, the SARIMA model predicted annual fire totals closer to China's reported counts in both 2018 and 2019."
+  # Unmodified publisher PNG ("larger image"), not a reconstruction or generated illustration.
+  # Download: https://journals.plos.org/plosone/article/figure/image?download=&id=10.1371%2Fjournal.pone.0255857.g008&size=large
+  # SHA-256: fc37783fe813817fcc78c342700cb7d5bd36f2e3d075f100803f0618d2eefda4
+  figure:
+    src: "/images/publications/plos-0255857-fig8.png"
+    label: "Fig. 8"
+    caption: "Monthly fire counts in China and forecasts from the original and optimized SARIMA models for 2018 and 2019."
+    alt: "Historical monthly fire counts are plotted in black through 2017. Both forecasts show seasonal peaks in 2018 and 2019, but the optimized model (blue) predicts fewer fires than the original model (red)."
+    source: "https://journals.plos.org/plosone/article/figure?id=10.1371%2Fjournal.pone.0255857.g008"
+    credit: "© 2021 Ma, Liu & Zhang, PLOS ONE."
+    license: "CC BY 4.0"
+    license_url: "https://creativecommons.org/licenses/by/4.0/"
+    width: 1395
+    height: 966
   scholar_id: "UmPI1h0AAAAJ:u5HHmVD_uO8C"
-  pdf:
+  pdf: "https://journals.plos.org/plosone/article/file?id=10.1371%2Fjournal.pone.0255857&type=printable"
   code:
-  data:
+  data: "https://doi.org/10.1371/journal.pone.0255857.s001"
   bibtex:
   notes: []
 

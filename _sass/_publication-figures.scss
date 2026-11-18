@@ -1,0 +1,98 @@
+// Keep the publication header above the list so figures have room for legible detail.
+.papers {
+  .measure { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .section-heading { display: flex; align-items: baseline; gap: .4rem 1.5rem; }
+  .section-heading a { margin-top: 0; }
+
+  .paper {
+    margin: 0;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--rule);
+    overflow-wrap: anywhere;
+  }
+  .paper-record, .paper-figure { min-width: 0; }
+  .journal { font-variant-numeric: tabular-nums; }
+  .paper-takeaway { max-width: 70ch; margin-top: .75rem; }
+  .paper-links { gap: 0 1rem; }
+  .paper-links > a { padding-block: .2rem; }
+  .review-list { border-top: 1px solid var(--rule); }
+  .review-list summary { padding-block: .85rem; }
+
+  .paper--illustrated {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+    @media (min-width: 760px) {
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+  }
+  .paper-figure {
+    margin: 0;
+    font: 13px/1.5 var(--sans);
+    color: var(--secondary);
+  }
+  .paper-original {
+    display: block;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    &:hover, &:focus-visible { border-color: var(--blue); }
+    &:hover .paper-original-label, &:focus-visible .paper-original-label { text-decoration: underline; }
+    img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 22rem;
+      margin-inline: auto;
+      object-fit: contain;
+    }
+  }
+  .paper-figure-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .25rem .75rem;
+    padding: .4rem .75rem;
+    border-top: 1px solid var(--rule);
+    strong { color: var(--ink); }
+  }
+  .paper-original-label { margin-left: auto; }
+  figcaption { margin-top: .45rem; }
+  .paper-attribution {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .15rem .8rem;
+    font-size: 12px;
+  }
+  figcaption p + .paper-attribution { margin-top: .25rem; }
+}
+
+:root:has(.figure-viewer[open]) { overflow: hidden; }
+.figure-viewer {
+  width: min(66rem, calc(100% - 32px)); max-width: none;
+  max-height: 92vh; max-height: 92dvh; padding: 0; border: 0; border-radius: 5px;
+  color: var(--ink); background: white; overflow: auto;
+  &::backdrop { background: rgba(12,21,29,.76); }
+  .figure-tools, .figure-notes { display: flex; align-items: center; gap: 12px; padding: 12px 18px; }
+  .figure-tools > div { flex: 1; }
+  h3 { font-size: 22px; }
+  button { display: grid; place-items: center; width: 44px; height: 44px; background: transparent;
+    color: var(--ink); border: 1px solid var(--rule); border-radius: 3px; cursor: pointer; font: 600 14px var(--sans); }
+  button:hover, button[aria-pressed="true"] { background: #e8f2f7; }
+  button:focus-visible, .figure-canvas:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+  .figure-canvas { height: min(62vh,38rem); height: min(62dvh,38rem); background: #f5f6f7;
+    border-block: 1px solid var(--rule); overflow: auto; overscroll-behavior: contain; }
+  .figure-canvas img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .figure-canvas.actual img { width: auto; height: auto; max-width: none; max-height: none; }
+  .figure-notes { justify-content: space-between; font: 14px/1.45 var(--sans); color: var(--secondary); }
+  .figure-notes a { flex: none; }
+  @media (max-width: 700px) {
+    .figure-tools, .figure-notes { padding: 10px 12px; }
+    .figure-canvas { height: min(52dvh,100vw); }
+    .figure-notes { align-items: start; flex-direction: column; gap: 6px; }
+  }
+}

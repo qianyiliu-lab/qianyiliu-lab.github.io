@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <symbol id="chat" viewBox="0 0 24 24"><path d="M20 5H4a1 1 0 0 0-1 1v11h5v4l5-4h7a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zM7 9h10M7 13h6"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM14 5h3.5v14H14z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="arrow-right" viewBox="0 0 24 24"><path d="M4.5 12h15m-6-6 6 6-6 6"/></symbol>
   <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M12 19.5v-15m-6 6 6-6 6 6"/></symbol>
   <symbol id="send" viewBox="0 0 24 24"><path d="m4 11 16-7-6 16-2.6-6.8L4 11Zm7.4 2.2L20 4"/></symbol>

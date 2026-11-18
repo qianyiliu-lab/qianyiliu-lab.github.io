@@ -78,7 +78,7 @@
   }
 
   function showLens(x, y) {
-    if (!cover.complete || !cover.naturalWidth) return false;
+    if (!cover.complete || !cover.naturalWidth || hero.hasAttribute('data-blending')) return false;
     const b = bounds || (bounds = measure());
     if (!overlap(x, y, 0, 0, b.photo) || b.blocked.some(r => overlap(x,y,0,0,r,2))) return false;
     lens.hidden = false;
@@ -144,9 +144,14 @@
   eligible.addEventListener('change', sync);
   cover.addEventListener('load', invalidate);
   hero.addEventListener('landscapechange', () => {
-    cover = hero.querySelector('.relief-image:not([hidden])') || photo;
+    cover = hero.dataset.view === 'terrain' ? hero.querySelector('.relief-image') : photo;
     sample = null; reset(); invalidate();
   });
+  const overlay = hero.querySelector('.relief-image');
+  overlay?.addEventListener('transitionrun', () => { hero.setAttribute('data-blending',''); reset(); });
+  const finishBlend = () => { hero.removeAttribute('data-blending'); invalidate(); };
+  overlay?.addEventListener('transitionend',finishBlend);
+  overlay?.addEventListener('transitioncancel',finishBlend);
   document.fonts?.ready.then(invalidate);
   new ResizeObserver(invalidate).observe(hero);
   window.addEventListener('resize', invalidate);

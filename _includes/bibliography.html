@@ -1,17 +1,63 @@
 {% for paper in include.records %}
-<article class="paper"{% if paper.doi %} id="paper-{{ paper.doi | slugify }}"{% endif %}>
-  <div><p class="journal">{% if paper.status == 'Under Review' %}Submitted to {% endif %}{{ paper.venue }} &middot; {{ paper.year }}</p>
-    <h4>{% if paper.doi %}<a href="https://doi.org/{{ paper.doi }}">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h4>
+{% assign doi = paper.doi | strip %}
+{% assign scholar_id = paper.scholar_id | strip %}
+{% assign figure = paper.figure %}
+{% assign src = figure.src | strip %}
+{% assign original = nil %}
+{% if src != empty and paper.status != 'Under Review' %}
+  {% assign asset = site.static_files | where: 'path', src | first %}
+  {% if asset %}{% assign original = src | relative_url %}{% endif %}
+{% endif %}
+<article class="paper{% if original %} paper--illustrated{% endif %}"{% if doi != empty %} id="paper-{{ doi | slugify }}"{% endif %}>
+  <div class="paper-record">
+    <p class="journal">{% if paper.status == 'Under Review' %}Submitted to {% endif %}{{ paper.venue | escape }} &middot; {{ paper.year | escape }}</p>
+    <h4>{% if doi != empty %}<a href="https://doi.org/{{ doi | escape }}">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h4>
     <div class="authors">{{ paper.authors | markdownify }}</div>
+    {% assign takeaway = paper.takeaway | strip %}
+    {% if takeaway != empty %}<p class="paper-takeaway">{{ takeaway | escape }}</p>{% endif %}
     <div class="paper-links">
-      {% if paper.doi %}<a href="https://doi.org/{{ paper.doi }}">DOI</a>{% endif %}
-      {% if paper.pdf %}<a href="{{ paper.pdf }}">PDF</a>{% endif %}
-      {% if paper.code %}<a href="{{ paper.code }}">Code</a>{% endif %}
-      {% if paper.data %}<a href="{{ paper.data }}">Data</a>{% endif %}
-      {% if paper.bibtex %}<a href="{{ paper.bibtex }}">BibTeX</a>{% endif %}
-      {% if paper.doi and paper.status != 'Under Review' %}<button type="button" class="paper-ask" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %} Ask about this paper<span class="sr-only">: {{ paper.title | escape }}</span></button>{% endif %}
-      {% if paper.scholar_id %}<span data-scholar-id="{{ paper.scholar_id }}">Citations unavailable</span>{% endif %}
+      {% if doi != empty %}<a href="https://doi.org/{{ doi | escape }}">DOI</a>{% endif %}
+      {% if paper.workflow %}<a href="{{ paper.workflow | escape }}">Study workflow</a>{% endif %}
+      {% assign resources = 'PDF,Code,Data,BibTeX' | split: ',' %}
+      {% for label in resources %}
+        {% assign key = label | downcase %}
+        {% assign url = paper[key] | strip %}
+        {% if url != empty %}<a href="{{ url | relative_url | escape }}">{{ label }}</a>{% endif %}
+      {% endfor %}
+      {% if doi != empty and paper.status != 'Under Review' %}<button type="button" class="paper-ask" aria-haspopup="dialog" aria-controls="research-qa" hidden>{% include academic-icon.html name="chat" %} Ask about this paper<span class="sr-only">: {{ paper.title | escape }}</span></button>{% endif %}
+      {% if scholar_id != empty %}<span data-scholar-id="{{ scholar_id | escape }}">Citations unavailable</span>{% endif %}
     </div>
   </div>
+  {% if original %}
+  {% assign label = figure.label | strip %}
+  {% assign caption = figure.caption | strip %}
+  {% assign source = figure.source | strip %}
+  {% assign credit = figure.credit | strip %}
+  {% assign license = figure.license | strip %}
+  {% assign license_url = figure.license_url | strip %}
+  <figure class="paper-figure">
+    <a class="paper-original" href="{{ original | escape }}">
+      <img src="{{ figure.preview | default: src | relative_url | escape }}" alt="{{ figure.alt | strip | default: caption | default: paper.title | escape }}"{% if figure.width and figure.height %} width="{{ figure.width | escape }}" height="{{ figure.height | escape }}"{% endif %} loading="lazy" decoding="async">
+      <span class="paper-figure-bar">
+        {% if label != empty %}<strong>{{ label | escape }}</strong>{% endif %}
+        <span class="paper-original-label">Open original</span>
+      </span>
+    </a>
+    {% if caption != empty or source != empty or credit != empty or license != empty or license_url != empty %}
+    <figcaption>
+      {% if caption != empty %}<p>{{ caption | escape }}</p>{% endif %}
+      <div class="paper-attribution">
+        {% if source != empty %}
+          {% assign scheme = source | split: ':' | first %}
+          {% assign initial = source | slice: 0 %}
+          {% if scheme == 'https' or scheme == 'http' or initial == '/' %}<a href="{{ source | relative_url | escape }}">Figure source</a>{% else %}<span>Source: {{ source | escape }}</span>{% endif %}
+        {% endif %}
+        {% if credit != empty %}<span>{{ credit | escape }}</span>{% endif %}
+        {% if license_url != empty %}<a rel="license" href="{{ license_url | relative_url | escape }}">{{ license | default: 'License' | escape }}</a>{% elsif license != empty %}<span>{{ license | escape }}</span>{% endif %}
+      </div>
+    </figcaption>
+    {% endif %}
+  </figure>
+  {% endif %}
 </article>
 {% endfor %}
