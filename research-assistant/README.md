@@ -19,7 +19,7 @@ When **you** are ready to publish, keep `ENABLED` set to `"false"` and run:
 pnpm exec wrangler deploy
 ~~~
 
-Use the actual workers.dev URL printed by Wrangler. Open its `/status`: expect HTTP 200 and `{"available":false}`. Disabled requests never contact OpenAI or instantiate the ledger. There is no preview URL, custom domain, scheduled job, automatic activation or live endpoint specified in this repository. A public status check consumes a Cloudflare request, not OpenAI credit. A Free-plan quota failure is not a reason to upgrade or add funding.
+Use the actual workers.dev URL printed by Wrangler. The homepage uses the public origin in `_config.yml`; check its `/status` after deployment. When disabled, expect HTTP 200 and `{"available":false}`. Disabled requests never contact OpenAI or instantiate the ledger. There is no preview URL, custom domain, scheduled job or automatic activation. A public status check consumes a Cloudflare request, not OpenAI credit. A Free-plan quota failure is not a reason to upgrade or add funding.
 
 ## Before enabling answers
 
@@ -27,7 +27,7 @@ Use the actual workers.dev URL printed by Wrangler. Open its `/status`: expect H
 2. **Isolate billing.** Require a dedicated promo-only organization, dedicated project and restricted server-side project key for Responses. No purchased balance, auto-recharge, invoice/paid fallback, other keys, workloads or competing spend against this allocation. Do not buy credits. Organization/project headers pin every request to the attested tenant. [Subscription credit behavior](https://developers.openai.com/api/docs/guides/chatgpt-api-credits) makes this isolation important: purchased credit can be consumed after promo credit runs out. Project budget alerts are not a hard cap.
 3. **Verify privacy and pricing.** This application does not persist prompts, answers or IP addresses; Responses uses `store:false`. Standard provider abuse-monitoring retention may still apply; the live composer discloses this before submission. If you require zero retention at the provider, keep the service off until effective Zero Data Retention is confirmed for the project. Do not enable request-body logging, payload tracing, a logging proxy, or AI Gateway. Review [OpenAI data controls](https://developers.openai.com/api/docs/guides/your-data) and the model links below.
 4. **Check the trusted corpus.** The parent site generates `src/knowledge.json`, a plain object with nonempty public text for each of the seven IDs below. Missing/extra keys, empty sections or an oversized corpus disable Q&A. Regenerate and rebundle after public content changes. Never put secrets or unpublished work in it.
-5. **Set secrets on the disabled Worker** using the interactive prompts below. Never paste values into this repository, shell arguments, the browser or site HTML. Follow [Cloudflare secret handling](https://developers.cloudflare.com/workers/configuration/secrets/).
+5. **Set secrets on the disabled Worker** using the interactive prompts below or the official Cloudflare dashboard (Worker Settings → Variables and Secrets → Add → Secret). Never paste values into this repository, shell arguments, chat, or the public homepage. Follow [Cloudflare secret handling](https://developers.cloudflare.com/workers/configuration/secrets/).
 
 ~~~sh
 pnpm exec wrangler secret put OPENAI_API_KEY

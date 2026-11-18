@@ -7,7 +7,7 @@ baseurl                  : ""
 google_scholar_stats_use_cdn : false
 google_scholar_id        : "UmPI1h0AAAAJ"
 # Public HTTPS Worker origin only. Without a configured backend, Q&A uses local sources.
-research_assistant_origin: ""
+research_assistant_origin: "https://qianyi-research-assistant.qianyi-research-assistant.workers.dev"
 
 # Google Analytics
 google_analytics_id      :
