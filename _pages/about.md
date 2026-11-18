@@ -14,6 +14,7 @@ redirect_from:
     <source media="(max-width: 700px)" srcset="{{ '/images/barry-arm-mobile-720.webp' | relative_url }} 720w, {{ '/images/barry-arm-mobile-1600.webp' | relative_url }} 1600w" sizes="(max-width: 480px) 480px, 100vw" data-lens-src="{{ '/images/barry-arm-mobile-1600.webp' | relative_url }}">
     <img src="{{ '/images/barry-arm-1440.webp' | relative_url }}" srcset="{{ '/images/barry-arm-1440.webp' | relative_url }} 1440w, {{ '/images/barry-arm-2560.webp' | relative_url }} 2560w, {{ '/images/barry-arm-3840.webp' | relative_url }} 3840w, {{ '/images/barry-arm-detail.webp' | relative_url }} 6144w" sizes="(max-width: 1400px) 1400px, 100vw" data-lens-src="{{ '/images/barry-arm-detail.webp' | relative_url }}" width="1440" height="415" fetchpriority="high" alt="Steep slopes and glacier ice above the water at the Barry Arm landslide in Alaska.">
   </picture>
+  <img class="relief-image" width="1920" height="1080" data-src="{{ '/images/barry-arm-relief.webp' | relative_url }}" data-bounds='{{ site.data.barry_arm_terrain | jsonify }}' alt="North-up shaded relief of Barry Arm, Alaska, with elevation contours at 100 metre intervals." hidden>
   <div class="measure cover-inner">
     <p class="institution">{{ author.employer }}</p>
     <h1>{{ author.name }}</h1>
@@ -24,7 +25,19 @@ redirect_from:
       <a class="cover-cv" href="{{ author.cv | relative_url }}" download>{% include academic-icon.html name="download" %} Download CV</a>
     </div>
   </div>
-  <a class="image-credit" href="https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide" title="Original panorama by Tony Fischbach, U.S. Geological Survey">Barry Arm landslide, Alaska &middot; Tony Fischbach / USGS</a>
+  <div class="view-strip"><div class="measure view-row">
+    <div class="view-site"><strong>Barry Arm, Alaska</strong><span data-coordinate title="Approximate location of the landslide toe">61.10&deg; N &nbsp;148.17&deg; W</span></div>
+    <div class="view-switch" role="group" aria-label="Landscape view" hidden>
+      <button type="button" data-view="photo" aria-pressed="true">Photo</button>
+      <button type="button" data-view="terrain" aria-pressed="false">Terrain</button>
+    </div>
+    <span class="view-source">
+      <a data-credit="photo" href="https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide">Tony Fischbach / USGS</a>
+      <a data-credit="terrain" href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services" hidden>USGS 3DEP &middot; 100 m contours</a>
+    </span>
+    <span class="view-scale" hidden role="img" aria-label="North up; approximate 1 kilometre scale"><span aria-hidden="true">N &uarr;</span><span class="scale-bar" aria-hidden="true">1 km</span></span>
+    <span class="sr-only" role="status" data-view-status></span>
+  </div></div>
 </header>
 
 <div class="measure introduction">

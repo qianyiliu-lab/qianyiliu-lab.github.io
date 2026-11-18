@@ -45,7 +45,7 @@ a:focus-visible, summary:focus-visible { outline: 3px solid #3c8ac3; outline-off
 .estuary picture { z-index: -2; }
 .estuary picture img { object-fit: cover; object-position: 50% 52%; }
 .estuary::before { content: ""; z-index: -1; background: linear-gradient(90deg,rgba(9,25,38,.84),rgba(12,28,40,.72) 29%,rgba(12,28,40,.18) 56%,transparent 73%); }
-.cover-inner { padding-block: 58px 68px; }
+.cover-inner { padding-block: 58px 48px; }
 .institution { font-size: 15px; color: #f1f3f4; }
 .estuary h1 { margin: 17px 0 12px; font-size: 88px; line-height: 1.04; }
 .role { font-size: 22px; font-weight: 500; line-height: 1.35; }
@@ -54,7 +54,23 @@ a:focus-visible, summary:focus-visible { outline: 3px solid #3c8ac3; outline-off
 .cover-actions a { font-size: 15px; color: white; font-weight: 600; }
 .cover-cv { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; text-decoration: none; }
 .cover-cv:hover { text-decoration: underline; }
-.image-credit { position: absolute; right: 16px; bottom: 10px; padding: 2px 7px; color: white; background: rgba(20,26,30,.74); font: 12px/1.5 var(--sans); text-decoration: none; }
+.relief-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.view-strip { background: rgba(12,29,40,.88); color: #edf3f5; border-top: 1px solid rgba(232,247,250,.28); }
+.view-row, .view-site, .view-switch { display: flex; align-items: center; }
+.view-row { gap: 16px; min-height: 51px; padding-block: 5px; }
+.view-site { flex-wrap: wrap; gap: 3px 14px; margin-right: auto; line-height: 1.3; }
+.view-site strong { font: 600 13px/1.4 var(--sans); }
+.view-site span { color: #b8cfda; font: 12px/1.35 ui-monospace, Consolas, monospace; }
+.view-switch { flex: none; gap: 2px; padding: 2px; border: 1px solid #7c929f; border-radius: 5px; }
+.view-switch[hidden], .view-source [hidden], .relief-image[hidden], .view-scale[hidden] { display: none; }
+.view-switch button { min-height: 30px; padding: 3px 10px; border: 0; border-radius: 2px; background: none; color: #e2ebf1; font: 600 13px/1.3 var(--sans); cursor: pointer; }
+.view-switch button[aria-pressed="true"] { background: #edf6fa; color: #153b4e; }
+.view-switch button:hover:not([aria-pressed="true"]) { background: #36515f; }
+.view-switch button:focus-visible, .view-source a:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+.view-source { min-width: 19ch; text-align: right; font: 12px/1.4 var(--sans); }
+.view-source a { color: #d5e5ec; }
+.view-scale { display: inline-flex; align-items: center; flex: none; gap: 8px; color: #e2f1f4; font: 11px/1.2 ui-monospace, Consolas, monospace; }
+.scale-bar { display: inline-block; width: var(--km); padding-bottom: 2px; border-bottom: 2px solid currentColor; text-align: center; }
 .introduction, .service { display: grid; grid-template-columns: 1.25fr 1fr; gap: 52px; }
 .introduction { padding-block: 52px 58px; }
 .bio { display: grid; grid-template-columns: 78px minmax(0,1fr); gap: 20px; align-items: start; }
@@ -140,13 +156,18 @@ summary { cursor: pointer; }
   .nav-row { min-height: 54px; }
   .mobile-nav ul { right: 16px; }
   .estuary::before { background: linear-gradient(0deg,rgba(8,23,34,.88),rgba(8,23,34,.74) 42%,rgba(8,23,34,.40) 68%,transparent 96%); }
+  .estuary[data-view="terrain"]::before { background: linear-gradient(0deg,rgba(8,23,34,.85),rgba(8,23,34,.72) 52%,rgba(8,23,34,.53) 84%,rgba(8,23,34,.22)); }
   .estuary picture img { object-position: 50% 52%; }
-  .cover-inner { padding-block: 100px 52px; }
+  .cover-inner { padding-block: 88px 34px; }
   .estuary h1 { font-size: 60px; margin-block: 14px 11px; }
   .role { font-size: 19px; }
   .fields { max-width: 37ch; font-size: 15px; }
   .cover-actions { margin-top: 20px; }
-  .image-credit { right: 8px; bottom: 7px; font-size: 10px; }
+  .view-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 3px 8px; padding-block: 8px; }
+  .view-site { display: grid; }
+  .view-source { grid-column: 1; min-width: 0; text-align: left; }
+  .view-scale { justify-self: end; }
+  .view-switch button { min-height: 36px; }
   .introduction, .service, .research-grid { grid-template-columns: minmax(0,1fr); gap: 25px; }
   .introduction { padding-block: 26px; }
   .bio { display: flow-root; }
@@ -180,7 +201,7 @@ summary { cursor: pointer; }
 }
 @media print {
   body { color: black; font-size: 11pt; }
-  .mast, .skip-link, .image-credit, .cover-actions, .survey-pointer { display: none !important; }
+  .mast, .skip-link, .view-strip, .relief-image, .cover-actions, .survey-pointer { display: none !important; }
   .estuary { background: white; color: black; }
   .estuary picture, .estuary::before { display: none; }
   .fields, .institution { color: black; }

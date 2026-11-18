@@ -22,11 +22,21 @@ The site is based on the AcadHomepage template and remains a static Jekyll site 
 
 The cover is [Panorama view of Barry Arm Landslide](https://www.usgs.gov/media/images/panorama-view-barry-arm-landslide), a public-domain field photograph by Tony Fischbach of the U.S. Geological Survey. It illustrates a geohazard setting, not an author field site. The 9440 x 2720 original is served as responsive WebP derivatives, with a mountain-centered crop on narrow screens. The optional desktop lens uses a higher-resolution derivative of the same photograph.
 
+The optional **Terrain** view is a north-up shaded relief of the same fjord, not a hazard prediction or a georeferenced overlay of the panorama. It is built from the [USGS 3DEP historical 1 arc-second DEM, tile n62w149](https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1/TIFF/historical/n62w149/USGS_1_n62w149_20171229.tif), resampled onto a local 10 m grid for display with 100 m contours. The image, approximate NAD83 coordinates and 1 km scale are served locally. The photo caption locates the [Barry Arm landslide](https://www.usgs.gov/data/select-model-results-simulations-hypothetical-rapid-failures-landslides-barry-arm-prince), not the camera. To regenerate the raster and its bounds from the downloaded tile, run:
+
+```bash
+python _tools/render-barry-relief.py USGS_1_n62w149_20171229.tif images/barry-arm-relief.webp
+```
+
+Regeneration requires NumPy and Pillow; neither is required to build or serve the site.
+
 ## Local Preview
 
 The hero's "Ask about my research" button opens the research Q&A panel. Its suggested questions use the homepage's public content and never call the API. Free-form answers require the separately deployed Cloudflare Worker in `research-assistant/` and an explicitly enabled, still-funded grant. Only its public HTTPS origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or personal billing information in this repository. The backend directory is excluded from the Pages build.
 
-To exercise the interface without spending API credit, run `node _tests/research-qa.cjs http://127.0.0.1:4000/` with Playwright and Edge installed. The test intercepts Worker requests and covers both live-answer and guide-only layouts.
+Published entries with a DOI also have an **Ask about this paper** button. Opening a record, following its DOI, and copying its citation do not use model credit. Only an explicitly submitted question sends the selected title and DOI as context; switching papers starts a fresh conversation. The assistant uses the public homepage record, not the full text of the article.
+
+With Playwright and Edge installed, run `node _tests/research-qa.cjs http://127.0.0.1:4000/` and `node _tests/landscape.cjs http://127.0.0.1:4000/`. The first intercepts Worker requests and spends no API credit; the second checks the map, magnifier and photo fallback across screen sizes.
 
 Install Ruby and Bundler, then run:
 

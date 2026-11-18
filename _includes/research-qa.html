@@ -8,9 +8,17 @@
     <label class="sr-only" for="qa-question">Ask a research question</label>
     <div class="qa-compose"><textarea id="qa-question" rows="2" maxlength="480" enterkeyhint="send" placeholder="Ask about a paper, method, or project&hellip;" aria-describedby="qa-privacy"></textarea>
     <button class="qa-send" type="submit" aria-label="Send question" title="Send question" disabled>{% include academic-icon.html name="arrow-up" %}</button></div>
-    <small id="qa-privacy">Messages go to OpenAI and may be retained for abuse monitoring. Please omit personal information.</small>
+    <small id="qa-privacy">Messages and any selected paper reference go to OpenAI and may be retained for abuse monitoring. Please omit personal information.</small>
   </form>
   <div class="qa-body">
+    <details class="qa-paper" hidden>
+      <summary><span class="qa-paper-venue"></span>{% include academic-icon.html name="arrow-right" %}</summary>
+      <a class="qa-paper-title"></a>
+      <p class="qa-paper-authors"></p>
+      <div class="qa-paper-tools"><a class="qa-record">Homepage record</a><button class="qa-copy" type="button">Copy citation</button></div>
+      <span class="qa-copy-status" role="status"></span>
+      <input class="qa-manual-copy" aria-label="Citation to copy" readonly hidden>
+    </details>
     <details class="qa-suggestions" open>
       <summary>Suggested questions {% include academic-icon.html name="arrow-right" %}</summary>
       <div class="qa-options" role="group" aria-label="Questions answered by the homepage">

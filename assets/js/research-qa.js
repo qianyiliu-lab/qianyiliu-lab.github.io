@@ -8,6 +8,9 @@
   const body = find('.qa-body');
   const question = find('textarea'), send = find('.qa-send'), close = find('.qa-close');
   const desktopInput = window.matchMedia('(min-width: 601px) and (hover: hover) and (pointer: fine)');
+  const paperInfo = find('.qa-paper'), paperLink = find('.qa-paper-title'), venue = find('.qa-paper-venue');
+  const copyStatus = find('.qa-copy-status'), manualCopy = find('.qa-manual-copy');
+  let paper = null;
   const topics = { research: 'Research directions', publications: 'Publications', projects: 'Projects',
     'awards-news': 'News and awards', teaching: 'Teaching', cv: 'Curriculum vitae', contact: 'Contact' };
   let origin, request, busy = false, history = [];
@@ -32,6 +35,7 @@
   }
   function beginConversation() {
     suggestions.open = false;
+    paperInfo.open = false;
     if (body.nextElementSibling === form) return;
     const focus = form.contains(document.activeElement) ? document.activeElement : null;
     body.after(form);
@@ -54,13 +58,48 @@
     } catch (_) { /* Source questions stay available without a service. */ }
     finally { clearTimeout(timer); if (request === op) request = null; }
   }
+  function openPanel(record) {
+    paper = record;
+    guide(); paperInfo.hidden = !paper; paperInfo.open = Boolean(paper);
+    suggestions.hidden = Boolean(paper); suggestions.open = !paper;
+    find('#qa-title').textContent = paper ? 'Paper Q&A' : 'Research Q&A';
+    if (paper) {
+      paperLink.textContent = paper.title; paperLink.href = paper.doi;
+      venue.textContent = paper.venue; find('.qa-paper-authors').textContent = paper.authors;
+      find('.qa-record').href = '#' + paper.id;
+    }
+    question.placeholder = paper ? 'Ask about this paper...' : 'Ask about a paper, method, or project...';
+    dialog.showModal(); checkService();
+  }
   launcher.hidden = false;
-  launcher.addEventListener('click', () => { guide(); suggestions.open = true; dialog.showModal(); checkService(); });
+  launcher.addEventListener('click', () => openPanel(null));
+  for (const trigger of document.querySelectorAll('.paper-ask')) {
+    const article = trigger.closest('.paper'), title = article?.querySelector('h4 a');
+    if (!article?.id || !title || !title.href.startsWith('https://doi.org/')) continue;
+    const record = {id:article.id, title:title.textContent.trim(), doi:title.href,
+      authors:article.querySelector('.authors').textContent.trim(), venue:article.querySelector('.journal').textContent.trim()};
+    trigger.hidden = false;
+    trigger.addEventListener('click', () => openPanel(record));
+  }
+  find('.qa-copy').addEventListener('click', async () => {
+    const record = paper;
+    if (!record) return;
+    const citation = [record.authors, record.title, record.venue.replace(/\s*\u00b7\s*/, ', ')].map(s=>s.replace(/[.]$/, '')+'.').join(' ')+' '+record.doi;
+    try {
+      await navigator.clipboard.writeText(citation);
+      if (dialog.open && paper === record) copyStatus.textContent = 'Citation copied.';
+    } catch {
+      if (!dialog.open || paper !== record) return;
+      manualCopy.value = citation; manualCopy.hidden = false; manualCopy.select();
+      copyStatus.textContent = 'Citation selected for copying.';
+    }
+  });
   close.addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     request?.abort(); request = null; busy = false; history = [];
     log.replaceChildren(); question.value = ''; guide(); controls();
     body.before(form); body.scrollTop = 0;
+    paper = null; copyStatus.textContent = ''; manualCopy.hidden = true; manualCopy.value = '';
   });
   dialog.addEventListener('click', event => {
     if (event.target === dialog) {
@@ -82,7 +121,7 @@
       const dest = document.getElementById(source.hash.slice(1));
       if (dest) {
         dialog.close();
-        const heading = dest.querySelector('h1,h2') || dest;
+        const heading = dest.querySelector('h1,h2,h3,h4') || dest;
         heading.tabIndex = -1;
         requestAnimationFrame(() => heading.focus({preventScroll:true}));
       }
@@ -103,9 +142,10 @@
     const op = request = new AbortController();
     const timer = setTimeout(() => op.abort(), 35000);
     try {
+      const context = paper ? [{role:'user',content:'Selected homepage publication: '+paper.title+' ('+paper.venue+'). DOI: '+paper.doi}] : [];
       const res = await fetch(origin + '/ask', {method:'POST',headers:{'Content-Type':'application/json'},
         credentials:'omit',referrerPolicy:'no-referrer',signal:op.signal,
-        body:JSON.stringify({question:text,history:history.slice(-4)})});
+        body:JSON.stringify({question:text,history:context.concat(history.slice(-4))})});
       if (!res.ok) throw new Error(res.status === 429 || res.status === 503 ? 'unavailable' : 'request');
       const data = await res.json();
       if (typeof data.answer !== 'string' || !data.answer.trim()) throw new Error('empty');
@@ -123,11 +163,11 @@
       history = history.concat({role:'user',content:text},{role:'assistant',content:data.answer.slice(0,480)}).slice(-4);
     } catch (err) {
       if (op !== request || !dialog.open) return;
-      response.firstChild.textContent = 'No AI answer is available right now. You can still use the suggested questions.';
+      response.firstChild.textContent = 'No AI answer is available right now. '+(paper ? 'The paper and its citation are still available.' : 'You can still use the suggested questions.');
       if (err.message === 'unavailable') {
         guide();
-        suggestions.open = true;
-        suggestions.querySelector('summary').focus({preventScroll:true});
+        const fallback = paper ? paperInfo : suggestions;
+        fallback.open = true; fallback.querySelector('summary').focus({preventScroll:true});
       }
     } finally {
       clearTimeout(timer);

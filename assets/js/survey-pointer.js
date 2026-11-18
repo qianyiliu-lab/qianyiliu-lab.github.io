@@ -1,6 +1,7 @@
 (() => {
   const find = selector => document.querySelector(selector);
-  const hero = find('#about-me'), cover = hero?.querySelector('picture img');
+  const hero = find('#about-me'), photo = hero?.querySelector('picture img');
+  let cover = photo;
   const toggle = find('.survey-toggle'), lens = find('.survey-lens'), locator = find('.survey-locator');
   if (!cover || !toggle || !lens || !locator || !window.PointerEvent) return;
   const surface = lens.querySelector('.survey-lens__surface');
@@ -25,7 +26,7 @@
   // areas of controls, even when their labels occupy only a small part.
   function measure() {
     const box = cover.getBoundingClientRect(), host = hero.getBoundingClientRect();
-    const blocked = Array.from(hero.querySelectorAll('a, button, summary'), el => el.getBoundingClientRect());
+    const blocked = Array.from(hero.querySelectorAll('a, button, summary, .view-strip'), el => el.getBoundingClientRect());
     const walk = document.createTreeWalker(hero, NodeFilter.SHOW_TEXT), range = document.createRange();
     while (walk.nextNode()) {
       const text = walk.currentNode;
@@ -64,7 +65,7 @@
   // desktop master for that cut unless the source explicitly selects it.
   function updateSource() {
     const preview = cover.currentSrc || cover.src;
-    const source = Array.from(cover.parentNode.querySelectorAll('source[media]')).find(el => matchMedia(el.media).matches);
+    const source = cover === photo && Array.from(photo.parentNode.querySelectorAll('source[media]')).find(el => matchMedia(el.media).matches);
     const url = (source ? source.dataset.lensSrc : cover.dataset.lensSrc || cover.src) || preview;
     if (sample?.url === url && sample.preview === preview) return;
     const current = sample = {url, preview};
@@ -142,6 +143,10 @@
   window.addEventListener('storage', e => { if (e.key === key || e.key === null) { wanted = e.newValue !== 'off'; sync(); } });
   eligible.addEventListener('change', sync);
   cover.addEventListener('load', invalidate);
+  hero.addEventListener('landscapechange', () => {
+    cover = hero.querySelector('.relief-image:not([hidden])') || photo;
+    sample = null; reset(); invalidate();
+  });
   document.fonts?.ready.then(invalidate);
   new ResizeObserver(invalidate).observe(hero);
   window.addEventListener('resize', invalidate);

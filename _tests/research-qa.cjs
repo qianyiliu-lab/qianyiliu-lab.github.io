@@ -14,7 +14,7 @@ const sizes = [[1440,900,true],[390,844,true],[320,640,false],[740,360,true],[10
     for (const [width,height,online] of sizes) {
       const p = await browser.newPage({viewport:{width,height},hasTouch:width<800,reducedMotion:'reduce'});
       const errors = [];
-      let posts=0, checks=0, fail=false;
+      let posts=0, checks=0, fail=false, lastPost;
       p.on('pageerror', e=>errors.push(e.message));
       await p.route('https://api.openai.com/**',r=>{errors.push('Direct model request');return r.abort()});
       await p.route('https://*.workers.dev/**',r=>{
@@ -25,6 +25,7 @@ const sizes = [[1440,900,true],[390,844,true],[320,640,false],[740,360,true],[10
         }
         assert.equal(new URL(r.request().url()).pathname,'/ask');
         assert.equal(r.request().method(),'POST');posts++;
+        lastPost = r.request().postDataJSON();
         return r.fulfill({headers,status:fail?503:200,json:fail?{}:{answer:'Landslides and floods. <not-html>',sources:['research','invalid','__proto__']}});
       });
       await p.goto(base);
@@ -73,6 +74,37 @@ const sizes = [[1440,900,true],[390,844,true],[320,640,false],[740,360,true],[10
       assert.ok(await trigger.evaluate(el=>el===el.ownerDocument.activeElement),'focus returns to opener');
       await trigger.click();assert.equal(await box.locator('.qa-turn').count(),0);
       await box.getByRole('button',{name:'Close research Q&A'}).click();
+      const actions=p.locator('.paper-ask'), n=await actions.count();
+      assert.equal(n,await p.locator('.paper h4 a[href^="https://doi.org/"]').count());
+      const beforePaper=posts;
+      for(let i=0;i<n;i++){
+        const trigger=actions.nth(i), item=trigger.locator('xpath=ancestor::article[1]');
+        const paperTitle=await item.locator('h4').innerText(), doi=await item.locator('h4 a').getAttribute('href');
+        await trigger.click();
+        const panel=p.getByRole('dialog',{name:'Paper Q&A'});
+        await panel.waitFor();
+        assert.equal(await panel.locator('.qa-paper-title').innerText(),paperTitle);
+        assert.equal(await panel.locator('.qa-paper-title').getAttribute('href'),doi);
+        assert.ok(!await panel.locator('.qa-suggestions').isVisible());
+        if(online) await form.waitFor();
+        if(i===0) await capture('paper');
+        // Review the clipboard payload in memory; do not touch the system clipboard.
+        await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async s=>{window.testCitation=s}}}));
+        await panel.getByRole('button',{name:'Copy citation'}).click();
+        assert.ok((await p.evaluate(()=>window.testCitation)).includes(doi));
+        assert.equal(posts,beforePaper+(online&&i>0?1:0),'opening or copying a paper is free');
+        if(online&&i===0){
+          fail=false;await input.fill('What is the subject?');await input.press('Enter');
+          await panel.getByText('Landslides and floods. <not-html>',{exact:true}).waitFor();
+          assert.equal(lastPost.question,'What is the subject?');
+          assert.ok(lastPost.history[0].content.includes(paperTitle)&&lastPost.history[0].content.includes(doi));
+          await p.keyboard.press('Escape');assert.ok(await trigger.evaluate(el=>el===document.activeElement));
+        } else {
+          await panel.getByRole('link',{name:'Homepage record'}).click();assert.ok(!await panel.isVisible());
+          assert.equal(new URL(p.url()).hash,'#'+await item.getAttribute('id'));
+        }
+      }
+      await trigger.click();assert.ok(!await p.locator('.qa-paper').isVisible());await p.keyboard.press('Escape');
       assert.deepEqual(errors,[]);
       await p.close();console.log('PASS',width,height,online?'online + budget fallback':'guide only');
     }
