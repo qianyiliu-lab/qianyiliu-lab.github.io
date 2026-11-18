@@ -2,7 +2,7 @@
   "schema_version": 2,
   "source": "google_scholar",
   "scholar_id": "UmPI1h0AAAAJ",
-  "checked_at": "2026-11-18T00:29:02.581797+00:00",
+  "checked_at": "2026-11-18T04:09:56.882412+00:00",
   "updated": "2026-11-18T00:29:02.581797+00:00",
   "citedby": 50,
   "publications": {
@@ -23,5 +23,5 @@
       "updated": "2026-11-18T00:29:02.581797+00:00"
     }
   },
-  "scholar_status": "complete"
+  "scholar_status": "unavailable"
 }
