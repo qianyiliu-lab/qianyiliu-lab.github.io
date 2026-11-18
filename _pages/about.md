@@ -41,19 +41,22 @@ redirect_from:
 </header>
 
 <div class="measure introduction">
-  <section class="bio" aria-labelledby="profile-heading">
-    <img src="{{ author.avatar | relative_url }}" width="86" height="104" alt="Portrait of Qianyi Liu">
-    <div><h2 id="profile-heading">About me</h2>
-      <p>I study where landslides and floods are likely to occur, and which environmental factors explain their distribution. At Stony Brook University, I combine remote sensing, GIS, and hydrodynamic modeling with machine learning to map susceptibility and test how well those maps hold up in new places.</p>
-      <div class="bio-actions">
-        {% include profile-links.html scholar="true" label="Email and academic profiles" %}
-      </div>
+  <section id="biography" class="bio" aria-labelledby="profile-heading">
+    <h2 id="profile-heading">About me</h2>
+    <img src="{{ author.avatar | relative_url }}" width="1279" height="1288" decoding="async" alt="Portrait of Qianyi Liu">
+    <p class="bio-lead">I use terrain and satellite data to study where landslides and floods are likely to occur.</p>
+    <p class="bio-detail">My colleagues and I used simulations of 78 tropical cyclones to <a href="#paper-{{ '10.1016/j.gsf.2026.102355' | slugify }}">map flood susceptibility in the Pearl River Delta</a>. In my <a href="#landslide-transfer">current landslide research</a>, I ask whether a model trained in one region can identify susceptible slopes in another, where records are sparse.</p>
+    <div class="bio-actions">
+      {% include profile-links.html scholar="true" label="Email and academic profiles" %}
     </div>
   </section>
-  <aside id="awards-news"><h2>News &amp; awards</h2>
-    <ul class="news">{% for item in site.data.news %}{% unless item.date == "TODO" %}
-      <li><span class="meta">{{ item.date }}</span><span>{% if item.url %}<a href="{{ item.url }}">{{ item.text | escape }}</a>{% else %}{{ item.text | escape }}{% endif %}</span></li>
-    {% endunless %}{% endfor %}</ul>
+  <aside id="awards-news" aria-labelledby="news-heading"><h2 id="news-heading">News &amp; awards</h2>
+    {% assign dated_news = site.data.news | where_exp: "item", "item.date != 'TODO'" | group_by: "date" %}
+    <dl class="news">{% for group in dated_news %}
+      <div><dt class="meta">{{ group.name | escape }}</dt><dd><ul>{% for item in group.items %}
+        <li>{{ item.text | escape }}{% if item.url %} <a href="{{ item.url | escape }}">{{ item.link_label | default: 'Read more' | escape }}</a>{% endif %}</li>
+      {% endfor %}</ul></dd></div>
+    {% endfor %}</dl>
   </aside>
 </div>
 
@@ -86,7 +89,7 @@ redirect_from:
 <section class="band" id="research"><div class="measure">
   <div class="section-heading"><h2>Research directions</h2></div>
   <div class="research-grid">{% for theme in site.data.research %}
-    <article><h3>{{ theme.title }}</h3><p>{{ theme.description }}</p></article>
+    <article{% if theme.anchor %} id="{{ theme.anchor | escape }}"{% endif %}><h3>{{ theme.title }}</h3><p>{{ theme.description }}</p></article>
   {% endfor %}</div>
 </div></section>
 

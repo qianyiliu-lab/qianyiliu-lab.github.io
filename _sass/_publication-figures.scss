@@ -30,7 +30,7 @@
   }
   .paper-figure {
     margin: 0;
-    font: 13px/1.5 var(--sans);
+    font: .9375rem/1.5 var(--sans);
     color: var(--secondary);
   }
   .paper-original {
@@ -66,7 +66,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: .15rem .8rem;
-    font-size: 12px;
+    font-size: .8125rem;
   }
   figcaption p + .paper-attribution { margin-top: .25rem; }
 }

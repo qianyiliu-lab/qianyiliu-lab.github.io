@@ -23,6 +23,7 @@
   todo: "TODO: Add a flood susceptibility map or model interpretation figure."
 
 - title: "Learning from sparse inventories"
+  anchor: "landslide-transfer"
   image_path: "images/projects/ssl-lsm-workflow.jpg"
   description: "Can unlabeled terrain data help map landslides in places with few recorded events? I test whether models trained on geospatial patches can transfer what they learn to a new area."
   keywords:

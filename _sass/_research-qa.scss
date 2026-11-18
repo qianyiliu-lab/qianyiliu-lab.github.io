@@ -50,7 +50,7 @@
 .qa-turn a { display: inline-block; margin: 7px 16px 0 0; color: var(--blue); font: 600 13px/1.5 var(--sans); }
 .qa-sources { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 9px; font: 13px/1.5 var(--sans); color: var(--secondary); }
 .qa-sources a { margin: 0; }
-.paper-ask { display: inline-flex; align-items: center; gap: 6px; padding: 3px 0; border: 0; background: transparent; color: var(--blue); font: 600 13px/1.5 var(--sans); cursor: pointer; }
+.paper-ask { display: inline-flex; align-items: center; gap: 6px; padding: 3px 0; border: 0; background: transparent; color: var(--blue); font: 600 .875rem/1.5 var(--sans); cursor: pointer; }
 .paper-ask:hover, .qa-copy:hover { text-decoration: underline; text-underline-offset: .22em; }
 .paper-ask:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .paper-ask[hidden], .qa-paper[hidden], .qa-suggestions[hidden] { display: none; }

@@ -3,11 +3,14 @@ main:
   - title: "Home"
     url: "/#about-me"
 
-  - title: "Research"
-    url: "/#research"
+  - title: "About"
+    url: "/#biography"
 
   - title: "Publications"
     url: "/#publications"
+
+  - title: "Research"
+    url: "/#research"
 
   - title: "Projects"
     url: "/#projects"

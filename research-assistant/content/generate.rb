@@ -87,7 +87,7 @@ module ResearchKnowledge
     end
 
     topics = {
-      "research" => ["#{name} describes her research:", *research].join("\n"),
+      "research" => ["Research in #{name}'s own words:", *research].join("\n"),
       "publications" => data.fetch("publications").map { |row| publication(row) }.join("\n"),
       "projects" => projects.join("\n"),
       "awards-news" => ["From #{name}'s public news:", *news].join("\n"),
