@@ -27,6 +27,8 @@
 .qa-head h2 { margin: 8px 0 0; font: 400 33px/1.1 var(--serif); }
 .qa-mode, .qa-form small { color: var(--secondary); font: 13px/1.4 var(--sans); }
 .qa-close, .qa-send { display: inline-grid; place-items: center; flex: none; width: 42px; height: 42px; padding: 0; border: 0; font-size: 20px; }
+.qa-source { min-width: 0; max-width: 100%; border: 1px solid var(--rule); border-radius: 3px; padding: 4px; background: white; color: var(--ink); font: 13px/1.4 var(--sans); }
+.qa-byline { flex-wrap: wrap; }
 .qa-close { position: absolute; top: 12px; right: 14px; color: #4a565e; border-radius: 5px; background: transparent; }
 .qa-close:hover { background: var(--wash); }
 .qa-body { flex: 1 1 auto; height: 254px; min-height: 0; padding: 0 var(--qa-pad) 14px; overflow-y: auto; overscroll-behavior: contain; }

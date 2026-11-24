@@ -39,7 +39,7 @@ In `_data/publications.yml`, a published record can have a short `takeaway` and 
 
 ## Local Preview
 
-The hero's "Ask about my research" button opens the research Q&A panel. Its suggested questions use the homepage's public content and never call the API. Free-form answers require the separately deployed Cloudflare Worker in `research-assistant/` and an explicitly enabled, still-funded grant. Only its public HTTPS origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or personal billing information in this repository. The backend directory is excluded from the Pages build.
+**Research Q&A** and **Paper Q&A** accept typed questions in local preview and on the published site. Homepage search matches questions to public records in the browser; it does not use a model or transmit queries. Suggestions are also local. Localhost does not call the Worker. On the public site, GPT answers require a positive Worker status and a funded grant. A question already being typed in homepage search stays local unless the visitor chooses GPT. If a GPT request fails, the panel returns to homepage search without retrying the paid request. Only the public HTTPS Worker origin belongs in `research_assistant_origin` in `_config.yml`; never put credentials or billing information in this repository.
 
 Published entries with a DOI also have an **Ask about this paper** button. Opening a record, following its DOI, and copying its citation do not use model credit. Only an explicitly submitted question sends the selected title and DOI as context; switching papers starts a fresh conversation. The assistant uses the public homepage record, not the full text of the article.
 
